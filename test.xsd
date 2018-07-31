@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="products" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xs:element name="applicableInstruments">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="instrument" type="xs:string" minOccurs="0" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="parameter" nillable="true">
+    <xs:complexType>
+      <xs:simpleContent msdata:ColumnName="parameter_Text" msdata:Ordinal="4">
+        <xs:extension base="xs:string">
+          <xs:attribute name="tolerance" type="xs:string" />
+          <xs:attribute name="label" type="xs:string" />
+          <xs:attribute name="unit" type="xs:string" />
+          <xs:attribute name="order" type="xs:string" />
+          <xs:attribute name="name" type="xs:string" />
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="pretreatments">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="pretreatment" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="type" type="xs:string" minOccurs="0" />
+              <xs:element name="parameters" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element ref="parameter" minOccurs="0" maxOccurs="unbounded" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="products" msdata:IsDataSet="true" msdata:Locale="en-US">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="applicableInstruments" />
+        <xs:element ref="parameter" />
+        <xs:element ref="pretreatments" />
+        <xs:element name="product">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="name" type="xs:string" minOccurs="0" />
+              <xs:element name="calibrations" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="calibration" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="version" type="xs:string" minOccurs="0" />
+                          <xs:element name="bias" type="xs:string" minOccurs="0" />
+                          <xs:element ref="applicableInstruments" minOccurs="0" maxOccurs="unbounded" />
+                          <xs:element ref="parameter" minOccurs="0" maxOccurs="unbounded" />
+                          <xs:element ref="pretreatments" minOccurs="0" maxOccurs="unbounded" />
+                          <xs:element name="coefficients" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="coefficient" nillable="true" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:simpleContent msdata:ColumnName="coefficient_Text" msdata:Ordinal="1">
+                                      <xs:extension base="xs:string">
+                                        <xs:attribute name="wavelength" type="xs:string" />
+                                      </xs:extension>
+                                    </xs:simpleContent>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="ghCalibration" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="version" type="xs:string" minOccurs="0" />
+                    <xs:element name="ghLimit" type="xs:string" minOccurs="0" />
+                    <xs:element ref="applicableInstruments" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element ref="pretreatments" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element name="factors" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="factor" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="meanScore" type="xs:string" minOccurs="0" msdata:Ordinal="0" />
+                                <xs:element name="invTqs" type="xs:string" minOccurs="0" msdata:Ordinal="1" />
+                                <xs:element name="loadings" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element name="loading" nillable="true" minOccurs="0" maxOccurs="unbounded">
+                                        <xs:complexType>
+                                          <xs:simpleContent msdata:ColumnName="loading_Text" msdata:Ordinal="0">
+                                            <xs:extension base="xs:string">
+                                            </xs:extension>
+                                          </xs:simpleContent>
+                                        </xs:complexType>
+                                      </xs:element>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                              <xs:attribute name="id" type="xs:string" />
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
