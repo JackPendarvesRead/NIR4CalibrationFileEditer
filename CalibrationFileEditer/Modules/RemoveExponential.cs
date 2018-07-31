@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CalibrationFileEditer
 {
-    public class RemoveExponentials : IPrograms
+    public class RemoveExponentials : IModule
     {
         public string GetName()
         {
@@ -30,7 +30,8 @@ namespace CalibrationFileEditer
                     for (var i = 0; i < exponentials.Count; i++)
                     {
                         Console.WriteLine(exponentials[i].Value.ToString());
-                        file = file.Replace(exponentials[i].Value.ToString(), "0");
+                        string number = exponentials[i].Value.ToString();
+                        file = file.Replace(number, ConvertExponential(number));
                     }
                     provider.SetData(file);
                     Console.WriteLine("Exponentials removed.");
@@ -44,6 +45,27 @@ namespace CalibrationFileEditer
             {
                 Console.WriteLine("Error.");
             }            
+        }
+
+        private string ConvertExponential(string x)
+        {
+            var regex = new Regex("(-?)([0-9])\\.([0-9]+)E-([0-9]{2})");
+            var match = regex.Match(x);
+
+            int numberOfZeroes = Int32.Parse(match.Groups[4].Value);
+            var sb = new StringBuilder();
+            sb.Append(match.Groups[1].Value);
+            sb.Append("0.");
+            if (numberOfZeroes > 0)
+            {
+                for (var i = 0; i < numberOfZeroes - 1; i++)
+                {
+                    sb.Append("0");
+                }
+            }
+            sb.Append(match.Groups[2].Value);
+            sb.Append(match.Groups[3].Value);
+            return sb.ToString();
         }
     }
 }

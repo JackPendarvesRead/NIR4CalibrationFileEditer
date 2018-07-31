@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CalibrationFileEditer
 {
-    interface IPrograms
+    interface IModule
     {
         string GetName();
         void RunProgram(DataProvider data);

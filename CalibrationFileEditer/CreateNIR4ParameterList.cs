@@ -26,7 +26,6 @@ namespace CalibrationFileEditer.Programs
                 parameter.unit = matches[i].Groups[3].Value;
                 parameter.order = matches[i].Groups[4].Value;
                 parameter.code = matches[i].Groups[5].Value;
-
                 parameterList.Add(parameter);
             }
 

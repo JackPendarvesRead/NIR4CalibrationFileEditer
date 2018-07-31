@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CalibrationFileEditer
 {
-    class FixTolerances : IPrograms
+    class FixTolerances : IModule
     {
         public string GetName()
         {

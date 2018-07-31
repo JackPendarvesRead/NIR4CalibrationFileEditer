@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CalibrationFileEditer
 {
-    class ShowOrders : IPrograms
+    class ShowOrders : IModule
     {
         public string GetName()
         {

@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 
 namespace CalibrationFileEditer
 {
-    class FixCodes : IPrograms
+    class FixCodes : IModule
     {
         public string GetName()
         {
