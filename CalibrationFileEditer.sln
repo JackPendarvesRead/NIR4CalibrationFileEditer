@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2010
+VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalibrationFileEditer", "CalibrationFileEditer\CalibrationFileEditer.csproj", "{BCCEC8FC-C9CE-46F8-AD88-75C42BA8C5A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExponentialStringManipulation", "ExponentialStringManipulation\ExponentialStringManipulation.csproj", "{76B5DE68-A82E-4D1B-916D-35809E33F5BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalibrationFileEditerUnitTests", "..\..\unit tests\CalibrationFileEditerUnitTests\ClassLibrary1\CalibrationFileEditerUnitTests.csproj", "{9DA6B67E-DD1F-43D6-8F2F-3760584C2362}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{BCCEC8FC-C9CE-46F8-AD88-75C42BA8C5A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BCCEC8FC-C9CE-46F8-AD88-75C42BA8C5A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BCCEC8FC-C9CE-46F8-AD88-75C42BA8C5A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76B5DE68-A82E-4D1B-916D-35809E33F5BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76B5DE68-A82E-4D1B-916D-35809E33F5BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76B5DE68-A82E-4D1B-916D-35809E33F5BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76B5DE68-A82E-4D1B-916D-35809E33F5BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DA6B67E-DD1F-43D6-8F2F-3760584C2362}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DA6B67E-DD1F-43D6-8F2F-3760584C2362}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DA6B67E-DD1F-43D6-8F2F-3760584C2362}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DA6B67E-DD1F-43D6-8F2F-3760584C2362}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -89,5 +89,11 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ExponentialStringManipulation\ExponentialStringManipulation.csproj">
+      <Project>{76b5de68-a82e-4d1b-916d-35809e33f5be}</Project>
+      <Name>ExponentialStringManipulation</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -42,6 +42,7 @@ namespace CalibrationFileEditer
                     {
                         var method = int.Parse(input);
                         modules[method - 1].RunProgram(provider);
+                        Console.WriteLine($"Running program '{modules[method - 1].GetName()}'");
                         Console.WriteLine();
                     }
                     catch
