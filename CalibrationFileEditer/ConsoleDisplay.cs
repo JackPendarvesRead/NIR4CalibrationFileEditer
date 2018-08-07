@@ -23,7 +23,7 @@ namespace CalibrationFileEditer
             }
             Console.WriteLine("Q: Save and Exit");
             Console.WriteLine();
-            Console.Write("Choose a program: ");
+            Console.Write ("Choose a program: ");
         }
     }
 }

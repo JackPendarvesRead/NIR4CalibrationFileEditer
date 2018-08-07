@@ -24,13 +24,13 @@ namespace CalibrationFileEditer
             var modules = new Modules().GetModules();
             var display = new ConsoleDisplay(modules);
             bool completed = false;
-            display.DisplayModules();
-            while (!completed)
-            {
-                Console.Write("Choose a program: ");
+            Console.WriteLine("Press enter to start program.");
+            while(!completed)
+            {                
                 var input = Console.ReadLine();
                 Console.Clear();
                 display.DisplayModules();
+                Console.WriteLine();
 
                 if (input.ToLower().StartsWith("q"))
                 {
@@ -42,7 +42,6 @@ namespace CalibrationFileEditer
                     {
                         var method = int.Parse(input);
                         modules[method - 1].RunProgram(provider);
-                        Console.WriteLine($"Running program '{modules[method - 1].GetName()}'");
                         Console.WriteLine();
                     }
                     catch

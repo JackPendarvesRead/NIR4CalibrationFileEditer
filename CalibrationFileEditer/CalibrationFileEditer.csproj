@@ -71,7 +71,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Modules\RemoveExponential.cs" />
     <Compile Include="RegexSearches.cs" />
-    <Compile Include="Modules\SaveAndExit.cs" />
     <Compile Include="Modules\ShowOrders.cs" />
   </ItemGroup>
   <ItemGroup>

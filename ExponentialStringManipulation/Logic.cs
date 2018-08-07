@@ -24,18 +24,15 @@ namespace ExponentialStringManipulation
             
             if (power < 0)
             {
-                var negativeLogic = new NegativeLogic();
-                return negativeLogic.NegativeExponentialConvert(match, power);
+                return new NegativeLogic().NegativeExponentialConvert(match, power);
             }
             if (power > 0)
             {
-                var positiveLogic = new PositiveLogic();
-                return positiveLogic.PositiveExponentialConvert(match, power);
+                return new PositiveLogic().PositiveExponentialConvert(match, power);
             }
             if (power == 0)
             {
-                var zeroLogic = new ZeroLogic();
-                zeroLogic.PositiveExponentialConvert(match, power);
+                return new ZeroLogic().PositiveExponentialConvert(match, power);
             }
 
             throw new Exception("Error occurred in ConvertExponential. Power logic failed.");
