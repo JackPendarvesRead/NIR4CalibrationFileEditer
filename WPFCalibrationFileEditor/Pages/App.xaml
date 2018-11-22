@@ -1,0 +1,69 @@
+﻿<Application x:Class="WPFCalibrationFileEditor.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:WPFCalibrationFileEditor"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>   
+        <!-- Header text style -->
+        <Style x:Key="headerTextStyle">
+            <Setter Property="Label.VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="Label.FontFamily" Value="Trebuchet MS"></Setter>
+            <Setter Property="Label.FontWeight" Value="Bold"></Setter>
+            <Setter Property="Label.FontSize" Value="30"></Setter>
+            <Setter Property="Label.Foreground" Value="#000000"></Setter>
+        </Style>
+
+        <!-- Button style -->
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Width" Value="80" />
+            <Setter Property="Height" Value="25" />
+            <Setter Property="Margin" Value="5,5,5,5" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Background" Value="White" />
+            <Setter Property="Foreground" Value="Black" />
+        </Style>
+        
+        <!-- Label Style-->
+        <Style x:Key="pathLabelStyle" TargetType="{x:Type Label}">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="Width" Value="300" />
+            <Setter Property="Height" Value="25" />
+            <Setter Property="Margin" Value="5,5,5,5" />
+            <Setter Property="Background" Value="WhiteSmoke" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="Cursor" Value="IBeam" />
+        </Style>
+        <Style x:Key="textBoxLabelStyle" TargetType="{x:Type Label}">
+            <Setter Property="Height" Value="25" />
+            <Setter Property="Margin" Value="5,5,5,5" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Background" Value="Yellow" />
+            <Setter Property="Foreground" Value="Black" />
+        </Style>
+
+        <!-- TextBox Style-->
+        <Style x:Key="inputTextBoxStyle" TargetType="{x:Type TextBox}">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="Height" Value="25" />
+            <Setter Property="Margin" Value="5,5,5,5" />
+            <Setter Property="Background" Value="White" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="Cursor" Value="IBeam" />
+        </Style>
+
+        <!-- DataGrid header style -->
+        <Style x:Key="columnHeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
+            <Setter Property="Height" Value="35" />
+            <Setter Property="Padding" Value="5" />
+            <Setter Property="Background" Value="Black" />
+            <Setter Property="Foreground" Value="White" />
+        </Style>
+     
+    </Application.Resources>
+</Application>

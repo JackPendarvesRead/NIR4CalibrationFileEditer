@@ -4,13 +4,28 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{76B5DE68-A82E-4D1B-916D-35809E33F5BE}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>ExponentialStringManipulation</RootNamespace>
-    <AssemblyName>ExponentialStringManipulation</AssemblyName>
+    <ProjectGuid>{BCCEC8FC-C9CE-46F8-AD88-75C42BA8C5A5}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>ConsoleCalibrationFileEditer</RootNamespace>
+    <AssemblyName>ConsoleCalibrationFileEditer</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -31,9 +46,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
@@ -48,15 +60,36 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConvertExponentialStringProcess.cs" />
-    <Compile Include="Logic\NegativeLogic.cs" />
-    <Compile Include="Logic\PositiveLogic.cs" />
+    <Compile Include="Display.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="ProgramLoop.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Logic\ZeroLogic.cs" />
-    <Compile Include="RegularExpressions.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ExponentialStringManipulation\ExponentialStringManipulation.csproj">
+      <Project>{76b5de68-a82e-4d1b-916d-35809e33f5be}</Project>
+      <Name>ExponentialStringManipulation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NIR4CalibrationEditorMethods\NIR4CalibrationEditorMethods.csproj">
+      <Project>{683c8917-a6b3-47fe-a837-d8f27f29de94}</Project>
+      <Name>NIR4CalibrationEditorMethods</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

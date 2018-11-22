@@ -1,66 +1,48 @@
-﻿using CalibrationFileEditer.Programs;
+﻿using log4net;
+using NIR4CalibrationEditorMethods.FileManager;
+using NIR4CalibrationEditorMethods.Modules;
 using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace CalibrationFileEditer
+namespace ConsoleCalibrationFileEditer
 {
     class Program
     {
+
+        private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         static void Main(string[] args)
         {
+            log4net.Config.XmlConfigurator.Configure();
             if (!File.Exists(args[0]))
             {
-                Console.WriteLine("Drag file onto icon!");
+                Log.Error("No arguements when starting program.");
                 Console.ReadLine();
-                return;
+                return;                
             }
 
-            Console.WriteLine($"Editting: '{Path.GetFileName(args[0])}'");
-            Console.WriteLine();
-
-            var provider = new DataProvider(File.ReadAllText(args[0]));
-            var parameters = new CreateNIR4ParameterList().GetParameters(provider);
-            var modules = new Modules().GetModules();
-            var display = new ConsoleDisplay(modules);
-            bool completed = false;
-            Console.WriteLine("Press enter to start program.");
-            while(!completed)
-            {                
-                var input = Console.ReadLine();
-                Console.Clear();
-                display.DisplayModules();
-                Console.WriteLine();
-
-                if (input.ToLower().StartsWith("q"))
+            Log.Info($"Editting: '{Path.GetFileName(args[0])}'");
+            string writeFilePath = new FileSave().GetWriteFilePath(args[0]);
+            using (FileStream readStream = new FileStream(args[0], FileMode.Open, FileAccess.Read, FileShare.Delete))
+            using (FileStream writeStream = new FileStream(writeFilePath, FileMode.Create, FileAccess.Write, FileShare.Delete))
+            {
+                var data = new DataProvider(new StreamReader(readStream).ReadToEnd());
+                var modules = new List<IModule>()
                 {
-                    completed = true;
-                }
-                else
-                {
-                    try
-                    {
-                        var method = int.Parse(input);
-                        modules[method - 1].RunProgram(provider);
-                        Console.WriteLine();
-                    }
-                    catch
-                    {
-                        Console.WriteLine("Invalid selection.");
-                        Console.WriteLine();
-                    }
-                }               
+                    new GetInfo(),
+                    new ShowOrders(),
+                    new RemoveExponentials(),
+                    new FixTolerances(),
+                    new FixCodes()
+                };
+                ProgramLoop programLoop = new ProgramLoop(data);
+                programLoop.Run(modules);
+                FileSave save = new FileSave();
+                save.Save(writeStream, data);
+                Log.Info($"File saved successfully {writeFilePath}");                
+                Console.ReadLine();
             }
-
-            var filePath = Path.GetFullPath(args[0]);
-            var fileName = Path.GetFileNameWithoutExtension(args[0]);
-            var newFileName = filePath.Replace(fileName, $"{fileName}_converted");
-            File.WriteAllText(newFileName, provider.GetData());
-            Console.WriteLine($"File saved: {newFileName}");
-            Console.WriteLine("Press any key to exit...");
-            Console.ReadKey();
-        }
-
-       
+        }       
     }
 }
