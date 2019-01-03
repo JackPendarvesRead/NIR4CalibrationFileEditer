@@ -35,25 +35,23 @@ namespace WPFCalibrationFileEditor
         {
             if (!string.IsNullOrEmpty(viewModel.EqaFilePath) && !string.IsNullOrEmpty(viewModel.GhFilePath))
             {
-                viewModel.Product.Name = viewModel.ProductName;
+                SaveFileDialog sfd = new SaveFileDialog
+                {
+                    Filter = "Aunir XML Equation|*.plsx"
+                };
+                if (sfd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    new SimonFileSaver().SaveFile(sfd.FileName, viewModel.Product);
+                    viewModel.Product.Name = viewModel.ProductName;
 
-                var page = new ShowParameters(viewModel);
-                this.NavigationService.Navigate(page);
+
+                    var page = new ShowParameters(viewModel);
+                    this.NavigationService.Navigate(page);
+                }                
             }
             else
             {
-                if (string.IsNullOrEmpty(viewModel.Product.Name))
-                {
-                    System.Windows.Forms.MessageBox.Show("Type product name.");
-                }
-                if (string.IsNullOrEmpty(viewModel.EqaFilePath))
-                {
-                    System.Windows.Forms.MessageBox.Show("Select an EQA file.");
-                }
-                if (string.IsNullOrEmpty(viewModel.GhFilePath))
-                {
-                    System.Windows.Forms.MessageBox.Show("Select a GH file.");
-                }                
+                ShowErrorDialog();
             }
         }
         private void AddGhFileButton_Click(object sender, RoutedEventArgs e)
@@ -74,9 +72,7 @@ namespace WPFCalibrationFileEditor
             ofd.Filter = "Foss Equation Files|*.eqa";
             if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                UpdateViewModelProduct(ofd.FileName);                
-                new SimonFileSaver().SetupProduct(viewModel.Product);
-                var product = viewModel.Product;
+                UpdateViewModelProduct(ofd.FileName);  
             }
         }
         private void UpdateViewModelProduct(string filePath)
@@ -94,6 +90,21 @@ namespace WPFCalibrationFileEditor
             foreach (Calibration c in new CalibrationLoader().LoadCalibrations(filePath))
             {
                 viewModel.Product.Calibrations.Add(c);
+            }
+        }
+        private void ShowErrorDialog()
+        {
+            if (string.IsNullOrEmpty(viewModel.Product.Name))
+            {
+                System.Windows.Forms.MessageBox.Show("Type product name.");
+            }
+            if (string.IsNullOrEmpty(viewModel.EqaFilePath))
+            {
+                System.Windows.Forms.MessageBox.Show("Select an EQA file.");
+            }
+            if (string.IsNullOrEmpty(viewModel.GhFilePath))
+            {
+                System.Windows.Forms.MessageBox.Show("Select a GH file.");
             }
         }
     }

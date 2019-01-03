@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using Aunir.SpectrumAnalysis.Interfaces.Equations;
+using Aunir.SpectrumAnalysis2.Interfaces.Pls;
 
 namespace WPFCalibrationFileEditor.Domain
 {
@@ -9,7 +10,7 @@ namespace WPFCalibrationFileEditor.Domain
         public string FileName { get; set; }
         public string Name { get; set; }
         public string Version { get; set; }
-        public IEquation Equation;
+        public IPlsEquationInformation Equation;
         private bool includeCalibration = true;
         public bool IncludeCalibration
         {
@@ -24,13 +25,13 @@ namespace WPFCalibrationFileEditor.Domain
             }
         }
 
-        public Calibration(IEquation equation, string fileName)
+        public Calibration(IPlsEquationInformation equation, string fileName)
         {
             if (equation != null)
             {
                 this.Equation = equation;
-                this.Name = equation.CommonEquationInformation.Parameter;
-                this.Version = equation.CommonEquationInformation.Version;
+                this.Name = equation.Parameter;
+                this.Version = "1.0.0.0";
                 this.FileName = fileName;
             }
         }

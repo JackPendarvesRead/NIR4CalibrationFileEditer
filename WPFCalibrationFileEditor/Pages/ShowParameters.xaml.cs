@@ -39,13 +39,7 @@ namespace WPFCalibrationFileEditor
         }
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-
-            var save = new FileSave();
-            var writeFilePath = save.GetWriteFilePath(viewModel.CalibrationFilePath);
-            using (var stream = new FileStream(writeFilePath, FileMode.Create, FileAccess.Write, FileShare.Delete))
-            {
-                save.Save(stream, viewModel.DataProvider);
-            }
+            new FileSave().Save(viewModel.DataProvider, viewModel.CalibrationFilePath);
             System.Windows.Application.Current.Shutdown();
         }     
 
@@ -61,8 +55,7 @@ namespace WPFCalibrationFileEditor
                     var bindingPath = (column.Binding as Binding).Path.Path;
                     var tb = e.EditingElement as TextBox;
                     var value = tb.Text;
-                    SetData(parameter, bindingPath, value);
-                    
+                    SetData(parameter, bindingPath, value);                    
                     viewModel.Parameters = parameters;
                 }
             }

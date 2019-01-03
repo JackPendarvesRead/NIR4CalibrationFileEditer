@@ -11,8 +11,9 @@ namespace WPFCalibrationFileEditor
 {
     public class FileSave
     {
-        public void Save(Stream stream, DataProvider data)
+        public void Save(DataProvider data, string filePath)
         {
+            using (var stream = new FileStream(GetWriteFilePath(filePath), FileMode.Create, FileAccess.Write, FileShare.Delete))
             using (var sw = new StreamWriter(stream, Encoding.Default, 1024, true))
             {
                 sw.Write(data.GetData());
@@ -20,7 +21,7 @@ namespace WPFCalibrationFileEditor
             }
         }
 
-        public string GetWriteFilePath(string filePath)
+        private string GetWriteFilePath(string filePath)
         {
             var file = Path.GetFileNameWithoutExtension(filePath);
             var date = DateTime.Now.ToString("yyMMdd_hhmmss");

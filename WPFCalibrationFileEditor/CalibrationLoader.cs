@@ -1,6 +1,5 @@
-﻿using Aunir.SpectrumAnalysis.FileIO;
-using Aunir.SpectrumAnalysis.FileIO.Foss.PLS;
-using Aunir.SpectrumAnalysis.Interfaces.Equations;
+﻿using Aunir.SpectrumAnalysis.Interfaces.Equations;
+using Aunir.SpectrumAnalysis2.Interfaces.Pls;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,10 +14,20 @@ namespace WPFCalibrationFileEditor
     {
         public List<Calibration> LoadCalibrations(string fileName)
         {
-            IEquationFileReader fileReader = new FossEqaPlsEquationFileReader("", "1.0.0.0");
-            List<IEquation> eqs = fileReader.ReadFile(new FileStream(fileName, FileMode.Open), out string prodName);
-            List<Calibration> calibrations = (from e in eqs select new Calibration(e, fileName)).ToList();
-            return calibrations;
+            using (var fs = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Delete))
+            {
+                IPlsDataReader reader = new Aunir.SpectrumAnalysis2.FossConnector.FossEqaFileReader();
+                var eqas = reader.ReadStream(fs);
+                return GenerateCalibrations(eqas, fileName).ToList();
+            }
+        }
+
+        private IEnumerable<Calibration> GenerateCalibrations(IEnumerable<IPlsEquationInformation> eqas, string filename)
+        {
+            foreach(var eq in eqas)
+            {
+                yield return new Calibration(eq, filename);
+            }
         }
     }
 }

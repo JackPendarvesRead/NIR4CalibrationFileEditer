@@ -12,7 +12,6 @@ namespace WPFCalibrationFileEditor.Domain
     public class Product : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-
         public string Name { get; set; }
         public InstrumentType ApplicableInstrument { get; set; }
 

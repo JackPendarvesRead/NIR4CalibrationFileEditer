@@ -49,6 +49,12 @@
     <Reference Include="Aunir.SpectrumAnalysis.Standardisation, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Aunir.SpectrumAnalysis.Standardisation.1.0.2\lib\net40\Aunir.SpectrumAnalysis.Standardisation.dll</HintPath>
     </Reference>
+    <Reference Include="Aunir.SpectrumAnalysis2, Version=3.0.22.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Aunir.SpectrumAnalysis2.DotNetStandard.3.0.22\lib\net45\Aunir.SpectrumAnalysis2.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetZip, Version=1.10.1.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetZip.1.10.1\lib\net20\DotNetZip.dll</HintPath>
+    </Reference>
     <Reference Include="JacksUsefulLibrary">
       <HintPath>..\..\..\Libraries\JacksUsefulLibrary\JacksUsefulLibrary\bin\Release\JacksUsefulLibrary.dll</HintPath>
     </Reference>
@@ -58,10 +64,17 @@
     <Reference Include="MathNet.Numerics, Version=4.7.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MathNet.Numerics.4.7.0\lib\net461\MathNet.Numerics.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Numerics" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -81,12 +94,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AppSettings.cs" />
     <Compile Include="CalibrationLoader.cs" />
     <Compile Include="Domain\Calibration.cs" />
     <Compile Include="Domain\FileImporter.cs" />
     <Compile Include="Domain\NIR4Parameter.cs" />
     <Compile Include="Domain\Product.cs" />
     <Compile Include="FileSave.cs" />
+    <Compile Include="Pages\Loading.xaml.cs">
+      <DependentUpon>Loading.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\MethodSelection.xaml.cs">
       <DependentUpon>MethodSelection.xaml</DependentUpon>
     </Compile>
@@ -99,7 +116,13 @@
       <DependentUpon>SelectFossFiles.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\FossViewModel.cs" />
-    <Compile Include="ViewModel\ViewModel.cs" />
+    <Compile Include="ViewModel\PageViewModel.cs" />
+    <Compile Include="XmlFileWriter.cs" />
+    <Compile Include="Nir4XmlSerialiser.cs" />
+    <Page Include="Pages\Loading.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

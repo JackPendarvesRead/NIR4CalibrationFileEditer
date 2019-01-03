@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using System.Windows.Forms;
 using System.IO;
 using WPFCalibrationFileEditor.ViewModel;
+using WPFCalibrationFileEditor.Pages;
 
 namespace WPFCalibrationFileEditor
 {
@@ -37,11 +38,14 @@ namespace WPFCalibrationFileEditor
         {
             if(!string.IsNullOrEmpty(viewModel.CalibrationFilePath))
             {
+                var loadingPage = new Loading();
+                this.NavigationService.Navigate(loadingPage);
+
                 using (var stream = new FileStream(viewModel.CalibrationFilePath, FileMode.Open, FileAccess.Read, FileShare.Delete))
                 {
-                    new ConvertPlsxProcess().Run(stream, viewModel);
+                    viewModel.DataProvider = new NIR4CalibrationEditorMethods.DataProvider(stream);
                 }
-
+                new ConvertPlsxProcess().Run(viewModel);
                 var parametersPage = new ShowParameters(viewModel);
                 this.NavigationService.Navigate(parametersPage);
             }

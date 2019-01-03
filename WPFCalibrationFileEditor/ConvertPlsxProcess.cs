@@ -13,20 +13,14 @@ namespace WPFCalibrationFileEditor
 {
     public class ConvertPlsxProcess
     {
-        public void Run(Stream stream, PageViewModel viewModel)
-        {            
-            var data = new DataProvider(stream);
-            RunMethods(data);                
-            viewModel.Parameters = GetParameters(data);
-            viewModel.DataProvider = data;
-        }
-
-        private void RunMethods(DataProvider data)
+        public void Run(PageViewModel viewModel)
         {
-            var filePath = @"C:\Users\jread\source\testdata\CalibrationFileEditer\default\defaultParameters.json";
-            var config = JacksUsefulLibrary.JsonReaderWriter<ReplaceEmptyParametersConfig>.LoadFromFile(filePath);
+            var data = viewModel.DataProvider;
+            var config = JacksUsefulLibrary.JsonMethods.JsonReaderWriter<ReplaceEmptyParametersConfig>.LoadFromFile(AppSettings.ParameterConfigurationFilePath);
             new ReplaceEmptyParameters(config).Run(data);
             new RemoveExponentials().Run(data);
+            viewModel.Parameters = GetParameters(data);
+            viewModel.DataProvider = data;
         }
 
         private ObservableCollection<NIR4Parameter> GetParameters(DataProvider data)
