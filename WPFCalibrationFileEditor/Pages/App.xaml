@@ -24,7 +24,21 @@
             <Setter Property="Background" Value="White" />
             <Setter Property="Foreground" Value="Black" />
         </Style>
-        
+
+        <Style TargetType="{x:Type Button}" x:Key="TitleButton">            
+            <Setter Property="Width" Value="200" />
+            <Setter Property="Height" Value="80" />
+            <Setter Property="Margin" Value="5,5,5,5" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontFamily" Value="Arial" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Background" Value="Yellow" />
+            <Setter Property="Foreground" Value="Black" />            
+        </Style>
+
         <!-- Label Style-->
         <Style x:Key="pathLabelStyle" TargetType="{x:Type Label}">
             <Setter Property="VerticalAlignment" Value="Center" />

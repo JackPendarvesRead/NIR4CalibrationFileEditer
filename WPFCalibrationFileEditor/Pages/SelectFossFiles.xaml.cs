@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
 using WPFCalibrationFileEditor.Domain;
+using WPFCalibrationFileEditor.Pages;
 using WPFCalibrationFileEditor.ViewModel;
 
 namespace WPFCalibrationFileEditor
@@ -35,18 +36,19 @@ namespace WPFCalibrationFileEditor
         {
             if (!string.IsNullOrEmpty(viewModel.EqaFilePath) && !string.IsNullOrEmpty(viewModel.GhFilePath))
             {
+                
                 SaveFileDialog sfd = new SaveFileDialog
                 {
                     Filter = "Aunir XML Equation|*.plsx"
                 };
+
                 if (sfd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
-                    new SimonFileSaver().SaveFile(sfd.FileName, viewModel.Product);
+                    var filePath = sfd.FileName;
+                    new SimonFileSaver().SaveFile(filePath, viewModel.Product);
                     viewModel.Product.Name = viewModel.ProductName;
-
-
-                    var page = new ShowParameters(viewModel);
-                    this.NavigationService.Navigate(page);
+                    System.Windows.MessageBox.Show($"File successfully saved to {filePath}");                    
+                    this.NavigationService.Navigate(new MethodSelection());
                 }                
             }
             else

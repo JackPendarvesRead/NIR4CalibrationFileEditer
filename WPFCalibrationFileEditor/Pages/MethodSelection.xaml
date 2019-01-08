@@ -33,8 +33,8 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <Button Grid.Row="1" Grid.Column="0" Click="SelectFoss_Click">SELECT GH FILES</Button>
-        <Button Grid.Row="1" Grid.Column="1" Click="SelectPlsx_Click">Edit Plsx File</Button>
+        <Button Grid.Row="1" Grid.Column="0" Click="SelectFoss_Click" Style="{StaticResource ResourceKey=TitleButton}">Create Plsx file from GH files</Button>
+        <Button Grid.Row="1" Grid.Column="1" Click="SelectPlsx_Click" Style="{StaticResource ResourceKey=TitleButton}">Edit Plsx File</Button>
         
     </Grid>
 </Page>

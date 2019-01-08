@@ -32,9 +32,9 @@ namespace WPFCalibrationFileEditor
             base.DataContext = viewModel;
             InitializeComponent();
         }
-        public ShowParameters(object data) : this()
+        public ShowParameters(PageViewModel data) : this()
         {
-            viewModel = data as PageViewModel;
+            viewModel = data;
             this.DataContext = data;
         }
         private void SaveButton_Click(object sender, RoutedEventArgs e)

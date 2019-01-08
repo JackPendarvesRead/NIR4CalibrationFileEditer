@@ -101,9 +101,6 @@
     <Compile Include="Domain\NIR4Parameter.cs" />
     <Compile Include="Domain\Product.cs" />
     <Compile Include="FileSave.cs" />
-    <Compile Include="Pages\Loading.xaml.cs">
-      <DependentUpon>Loading.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Pages\MethodSelection.xaml.cs">
       <DependentUpon>MethodSelection.xaml</DependentUpon>
     </Compile>
@@ -119,10 +116,6 @@
     <Compile Include="ViewModel\PageViewModel.cs" />
     <Compile Include="XmlFileWriter.cs" />
     <Compile Include="Nir4XmlSerialiser.cs" />
-    <Page Include="Pages\Loading.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Pages\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
