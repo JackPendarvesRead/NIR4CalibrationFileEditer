@@ -47,10 +47,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConvertPlsxProcessTestsConfig.cs" />
-    <Compile Include="ConvertPlsxProcessTestsData.cs" />
+    <Compile Include="TestConfig.cs" />
+    <Compile Include="TestData.cs" />
     <Compile Include="ConvertPlsxProcessTests.cs" />
-    <Compile Include="FileSaveTests.cs" />
+    <Compile Include="FilePathManipulationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

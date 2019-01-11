@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace WPFCalibrationFileEditor.UnitTests
 {
-    class ConvertPlsxProcessTestsConfig
+    class TestConfig
     {
         internal IEnumerable<ReplaceEmptyParametersConfig> GetConfig()
         {

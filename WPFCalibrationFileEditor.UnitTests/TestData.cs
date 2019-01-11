@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WPFCalibrationFileEditor.UnitTests
 {
-    internal class ConvertPlsxProcessTestsData
+    internal class TestData
     {
         internal string Data => 
         @"here is the first line

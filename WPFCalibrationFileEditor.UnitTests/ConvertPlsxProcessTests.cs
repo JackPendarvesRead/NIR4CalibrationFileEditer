@@ -27,7 +27,7 @@ namespace WPFCalibrationFileEditor.UnitTests
             [SetUp]
             public void Setup()
             {
-                var mockData = new ConvertPlsxProcessTestsData();
+                var mockData = new TestData();
                 data = mockData.Data;
                 expectedOutput = mockData.ExpectedData;
 
@@ -38,7 +38,7 @@ namespace WPFCalibrationFileEditor.UnitTests
                     DataProvider = new DataProvider(data),
                     Parameters = null
                 };
-                new ConvertPlsxProcess().Run(viewModel, new ConversionMethods(new ConvertPlsxProcessTestsConfig().GetConfig()).GetStandardMethods());
+                new ConvertPlsxProcess().Run(viewModel, new ConversionMethods(new TestConfig().GetConfig()).GetStandardMethods());
             }
             [Test]
             public void CorrectParametersInViewModel()
