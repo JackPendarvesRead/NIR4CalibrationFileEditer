@@ -5,6 +5,9 @@ using System.IO;
 using WPFCalibrationFileEditor.ViewModel;
 using WPFCalibrationFileEditor.Pages;
 using NIR4CalibrationEditorMethods;
+using NIR4CalibrationEditorMethods.Domain;
+using WPFCalibrationFileEditor.Logic;
+using WPFCalibrationFileEditor.Domain;
 
 namespace WPFCalibrationFileEditor.Pages
 {
@@ -41,10 +44,10 @@ namespace WPFCalibrationFileEditor.Pages
             {
                 using (var stream = new FileStream(viewModel.CalibrationFilePath, FileMode.Open, FileAccess.Read, FileShare.Delete))
                 {
-                    viewModel.DataProvider = new NIR4CalibrationEditorMethods.DataProvider(stream);
+                    viewModel.DataProvider = new DataProvider(stream);
                 }
                 var config = JacksUsefulLibrary.JsonMethods.JsonReaderWriter<ReplaceEmptyParametersConfig>.LoadFromFile(AppSettings.ParameterConfigurationFilePath);
-                new ConvertPlsxProcess(config).Run(viewModel);
+                new ConvertPlsxProcess().Run(viewModel, new ConversionMethods(config).GetStandardMethods());
                 var parametersPage = new ShowParameters(viewModel);
                 this.NavigationService.Navigate(parametersPage);
             }

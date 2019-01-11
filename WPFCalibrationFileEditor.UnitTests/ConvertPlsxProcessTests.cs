@@ -1,4 +1,6 @@
 ﻿using NIR4CalibrationEditorMethods;
+using NIR4CalibrationEditorMethods.Domain;
+using NIR4CalibrationEditorMethods.Methods;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -8,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WPFCalibrationFileEditor.Domain;
+using WPFCalibrationFileEditor.Logic;
 using WPFCalibrationFileEditor.ViewModel;
 
 namespace WPFCalibrationFileEditor.UnitTests
@@ -35,8 +38,7 @@ namespace WPFCalibrationFileEditor.UnitTests
                     DataProvider = new DataProvider(data),
                     Parameters = null
                 };
-                var config = new ConvertPlsxProcessTestsConfig().GetConfig();
-                new ConvertPlsxProcess(config).Run(viewModel);
+                new ConvertPlsxProcess().Run(viewModel, new ConversionMethods(new ConvertPlsxProcessTestsConfig().GetConfig()).GetStandardMethods());
             }
             [Test]
             public void CorrectParametersInViewModel()

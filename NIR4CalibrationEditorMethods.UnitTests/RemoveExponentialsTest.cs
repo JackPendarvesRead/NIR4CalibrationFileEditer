@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NIR4CalibrationEditorMethods;
+using NIR4CalibrationEditorMethods.Domain;
+using NIR4CalibrationEditorMethods.Methods;
 using NUnit.Framework;
 
 namespace NIR4CalibrationEditorMethods.UnitTests

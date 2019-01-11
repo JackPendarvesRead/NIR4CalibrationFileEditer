@@ -1,12 +1,13 @@
 ﻿using log4net;
+using NIR4CalibrationEditorMethods.Domain;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace NIR4CalibrationEditorMethods
+namespace NIR4CalibrationEditorMethods.Methods
 {
-    public class ReplaceEmptyParameters
+    public class ReplaceEmptyParameters : IMethod
     {
         private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private readonly IEnumerable<ReplaceEmptyParametersConfig> config;

@@ -95,12 +95,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AppSettings.cs" />
-    <Compile Include="Domain\Calibration.cs" />
-    <Compile Include="Domain\FileImporter.cs" />
+    <Compile Include="Domain\ConversionMethods.cs" />
     <Compile Include="Domain\NIR4Parameter.cs" />
-    <Compile Include="Domain\Product.cs" />
-    <Compile Include="FileSave.cs" />
-    <Compile Include="ConvertPlsxProcess.cs" />
+    <Compile Include="Logic\FileSave.cs" />
+    <Compile Include="Logic\ConvertPlsxProcess.cs" />
     <Compile Include="Pages\SelectPlsxFile.xaml.cs">
       <DependentUpon>SelectPlsxFile.xaml</DependentUpon>
     </Compile>

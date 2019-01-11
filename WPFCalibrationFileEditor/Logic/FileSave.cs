@@ -1,13 +1,9 @@
-﻿using NIR4CalibrationEditorMethods;
+﻿using NIR4CalibrationEditorMethods.Domain;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using WPFCalibrationFileEditor.Domain;
 
-namespace WPFCalibrationFileEditor
+namespace WPFCalibrationFileEditor.Logic
 {
     public class FileSave
     {

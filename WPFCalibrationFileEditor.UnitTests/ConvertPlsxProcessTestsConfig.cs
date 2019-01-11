@@ -1,4 +1,5 @@
 ﻿using NIR4CalibrationEditorMethods;
+using NIR4CalibrationEditorMethods.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;

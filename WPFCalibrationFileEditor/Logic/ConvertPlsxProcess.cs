@@ -1,25 +1,21 @@
-﻿using NIR4CalibrationEditorMethods;
+﻿using NIR4CalibrationEditorMethods.Domain;
+using NIR4CalibrationEditorMethods.Methods;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using WPFCalibrationFileEditor.Domain;
 using WPFCalibrationFileEditor.ViewModel;
 
-namespace WPFCalibrationFileEditor
+namespace WPFCalibrationFileEditor.Logic
 {
     public class ConvertPlsxProcess
-    {
-        private readonly IEnumerable<ReplaceEmptyParametersConfig> config;
-
-        public ConvertPlsxProcess(IEnumerable<ReplaceEmptyParametersConfig> config)
-        {
-            this.config = config;
-        }
-
-        public void Run(PageViewModel viewModel)
+    {   
+        public void Run(PageViewModel viewModel, IEnumerable<IMethod> methods)
         {
             var data = viewModel.DataProvider;
-            new ReplaceEmptyParameters(config).Run(data);
-            new RemoveExponentials().Run(data);
+            foreach(var method in methods)
+            {
+                method.Run(data);
+            }
             viewModel.Parameters = GetParameters(data);
             viewModel.DataProvider = data;
         }

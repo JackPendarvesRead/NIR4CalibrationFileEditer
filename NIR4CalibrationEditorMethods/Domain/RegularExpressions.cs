@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace NIR4CalibrationEditorMethods
+namespace NIR4CalibrationEditorMethods.Domain
 {
     public static class RegularExpressions
     {

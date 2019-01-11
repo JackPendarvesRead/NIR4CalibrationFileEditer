@@ -1,11 +1,6 @@
-﻿using NIR4CalibrationEditorMethods;
-using System;
-using System.Collections.Generic;
+﻿using NIR4CalibrationEditorMethods.Domain;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WPFCalibrationFileEditor.Domain;
 
 namespace WPFCalibrationFileEditor.ViewModel

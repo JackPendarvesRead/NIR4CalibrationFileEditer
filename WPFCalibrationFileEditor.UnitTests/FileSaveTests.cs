@@ -1,4 +1,5 @@
 ﻿using NIR4CalibrationEditorMethods;
+using NIR4CalibrationEditorMethods.Domain;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WPFCalibrationFileEditor.Logic;
 
 namespace WPFCalibrationFileEditor.UnitTests
 {
@@ -14,18 +16,11 @@ namespace WPFCalibrationFileEditor.UnitTests
         [TestFixture]
         public class TheSaveMethod
         {
-            //[Test]
-            //public void CorrectData()
-            //{
-            //    using(var stream = new MemoryStream())
-            //    {
-            //        var provider = new DataProvider(stream);
-
-            //        var save = new FileSave();
-            //        save.Save(stream, provider);
-            //    }
-
-            //}
+            [Test]            
+            public void CorrectData()
+            {
+                Assert.AreEqual(1, 0);
+            }
         }
 
         [TestFixture]
@@ -45,6 +40,7 @@ namespace WPFCalibrationFileEditor.UnitTests
             [Test]
             public void CorrectWriteFilePath()
             {
+                Assert.AreEqual(1, 0);
                 //Assert.AreEqual(finalFilePath, new FileSave().GetWriteFilePath(initialFilePath));
             }
         }

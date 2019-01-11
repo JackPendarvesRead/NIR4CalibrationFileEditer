@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Text;
 
-namespace NIR4CalibrationEditorMethods
+namespace NIR4CalibrationEditorMethods.Domain
 {
     public class DataProvider
     {

@@ -1,4 +1,5 @@
 ﻿using NIR4CalibrationEditorMethods;
+using NIR4CalibrationEditorMethods.Domain;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -16,6 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WPFCalibrationFileEditor.Domain;
+using WPFCalibrationFileEditor.Logic;
 using WPFCalibrationFileEditor.ViewModel;
 
 namespace WPFCalibrationFileEditor
@@ -70,7 +72,10 @@ namespace WPFCalibrationFileEditor
             {
                 if(parameter.Groups["code"].Value == changeParameter.Code)
                 {
-                    file = file.Replace(parameter.ToString() ,RegularExpressions.findParameterGroups.ReplaceGroup(parameter.ToString(), bindingPath.ToLower(), replacement));
+                    file = file.Replace(
+                        parameter.ToString(), 
+                        JacksUsefulLibrary.RegularExpressionMethods.RegexExtensionMethods.ReplaceGroup(RegularExpressions.findParameterGroups, parameter.ToString(), bindingPath.ToLower(), replacement)
+                        );
                     viewModel.DataProvider.SetData(file);
                 }
             }

@@ -3,10 +3,11 @@ using System.Text.RegularExpressions;
 using log4net;
 using System.IO;
 using NIR4CalibrationEditorMethods;
+using NIR4CalibrationEditorMethods.Domain;
 
-namespace NIR4CalibrationEditorMethods
+namespace NIR4CalibrationEditorMethods.Methods
 {
-    public class RemoveExponentials
+    public class RemoveExponentials : IMethod
     {
         private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
@@ -20,8 +21,9 @@ namespace NIR4CalibrationEditorMethods
                 foreach (Match exponential in exponentials)
                 {
                     Log.Debug(exponential.Value.ToString());
-                    var number = exponential.Value.ToString();
-                    file = file.Replace(number, new ExponentialStringManipulation.ConvertExponentialStringProcess().Convert(number));
+                    var numberString = exponential.Value.ToString();
+                    var converter = new JacksUsefulLibrary.RegularExpressionMethods.ExponentialStringManipulation.ConvertScientificToDecimal();
+                    file = file.Replace(numberString, converter.Convert(numberString));
                 }
             }
             else
