@@ -4,8 +4,9 @@ using System.Windows.Forms;
 using System.IO;
 using WPFCalibrationFileEditor.ViewModel;
 using WPFCalibrationFileEditor.Pages;
+using NIR4CalibrationEditorMethods;
 
-namespace WPFCalibrationFileEditor
+namespace WPFCalibrationFileEditor.Pages
 {
     /// <summary>
     /// Interaction logic for SelectCalibrationFile.xaml
@@ -38,14 +39,12 @@ namespace WPFCalibrationFileEditor
         {
             if(!string.IsNullOrEmpty(viewModel.CalibrationFilePath))
             {
-                var loadingPage = new Loading();
-                this.NavigationService.Navigate(loadingPage);
-
                 using (var stream = new FileStream(viewModel.CalibrationFilePath, FileMode.Open, FileAccess.Read, FileShare.Delete))
                 {
                     viewModel.DataProvider = new NIR4CalibrationEditorMethods.DataProvider(stream);
                 }
-                new ConvertPlsxProcess().Run(viewModel);
+                var config = JacksUsefulLibrary.JsonMethods.JsonReaderWriter<ReplaceEmptyParametersConfig>.LoadFromFile(AppSettings.ParameterConfigurationFilePath);
+                new ConvertPlsxProcess(config).Run(viewModel);
                 var parametersPage = new ShowParameters(viewModel);
                 this.NavigationService.Navigate(parametersPage);
             }

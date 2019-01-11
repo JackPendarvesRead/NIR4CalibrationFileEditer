@@ -1,4 +1,5 @@
 ﻿using NIR4CalibrationEditorMethods;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using WPFCalibrationFileEditor.Domain;
 using WPFCalibrationFileEditor.ViewModel;
@@ -7,10 +8,16 @@ namespace WPFCalibrationFileEditor
 {
     public class ConvertPlsxProcess
     {
+        private readonly IEnumerable<ReplaceEmptyParametersConfig> config;
+
+        public ConvertPlsxProcess(IEnumerable<ReplaceEmptyParametersConfig> config)
+        {
+            this.config = config;
+        }
+
         public void Run(PageViewModel viewModel)
         {
             var data = viewModel.DataProvider;
-            var config = JacksUsefulLibrary.JsonMethods.JsonReaderWriter<ReplaceEmptyParametersConfig>.LoadFromFile(AppSettings.ParameterConfigurationFilePath);
             new ReplaceEmptyParameters(config).Run(data);
             new RemoveExponentials().Run(data);
             viewModel.Parameters = GetParameters(data);

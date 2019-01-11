@@ -17,7 +17,7 @@ namespace WPFCalibrationFileEditor.UnitTests
         [TestFixture]
         public class TheRunMethod
         {
-            SelectPlsxFileViewModel viewModel;
+            PageViewModel viewModel;
             string data;
             string expectedOutput;
 
@@ -28,19 +28,25 @@ namespace WPFCalibrationFileEditor.UnitTests
                 data = mockData.Data;
                 expectedOutput = mockData.ExpectedData;
 
-                viewModel = new SelectPlsxFileViewModel()
+                viewModel = new PageViewModel()
                 {
                     CalibrationFileName = @"test.plsx",
                     CalibrationFilePath = @"\\madeup\filepath\test.plsx",
                     DataProvider = new DataProvider(data),
                     Parameters = null
                 };
-                new ConvertPlsxProcess().Run(viewModel);
+                var config = new ConvertPlsxProcessTestsConfig().GetConfig();
+                new ConvertPlsxProcess(config).Run(viewModel);
             }
             [Test]
             public void CorrectParametersInViewModel()
-            {                
-
+            {
+                Assert.AreEqual(5, viewModel.Parameters.Count);
+                Assert.AreEqual("ME", viewModel.Parameters[0].Code);
+                Assert.AreEqual("Protein", viewModel.Parameters[1].Code);
+                Assert.AreEqual("Empty", viewModel.Parameters[2].Code);
+                Assert.AreEqual("Moisture", viewModel.Parameters[3].Code);
+                Assert.AreEqual("DM", viewModel.Parameters[4].Code);
             }
             [Test]
             public void CorrectDataProviderInViewModel()

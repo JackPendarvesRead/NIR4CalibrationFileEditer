@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConvertPlsxProcessTestsConfig.cs" />
     <Compile Include="ConvertPlsxProcessTestsData.cs" />
     <Compile Include="ConvertPlsxProcessTests.cs" />
     <Compile Include="FileSaveTests.cs" />
