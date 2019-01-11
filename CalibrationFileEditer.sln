@@ -3,13 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExponentialStringManipulation", "ExponentialStringManipulation\ExponentialStringManipulation.csproj", "{76B5DE68-A82E-4D1B-916D-35809E33F5BE}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NIR4CalibrationEditorMethods", "NIR4CalibrationEditorMethods\NIR4CalibrationEditorMethods.csproj", "{683C8917-A6B3-47FE-A837-D8F27F29DE94}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFCalibrationFileEditor", "WPFCalibrationFileEditor\WPFCalibrationFileEditor.csproj", "{4C92D799-D613-4C65-A1EF-D60197C81EAA}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExponentialStringManipulation.UnitTests", "ExponentialStringManipulation.UnitTests\ExponentialStringManipulation.UnitTests.csproj", "{479EB9FA-B535-492F-8A74-2223BA54A12E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NIR4CalibrationEditorMethods.UnitTests", "NIR4CalibrationEditorMethods.UnitTests\NIR4CalibrationEditorMethods.UnitTests.csproj", "{D51B0BC0-781A-4D00-807C-6F6E3410A8ED}"
 EndProject
@@ -21,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{76B5DE68-A82E-4D1B-916D-35809E33F5BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{76B5DE68-A82E-4D1B-916D-35809E33F5BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{76B5DE68-A82E-4D1B-916D-35809E33F5BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{76B5DE68-A82E-4D1B-916D-35809E33F5BE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{683C8917-A6B3-47FE-A837-D8F27F29DE94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{683C8917-A6B3-47FE-A837-D8F27F29DE94}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{683C8917-A6B3-47FE-A837-D8F27F29DE94}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,10 +25,6 @@ Global
 		{4C92D799-D613-4C65-A1EF-D60197C81EAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C92D799-D613-4C65-A1EF-D60197C81EAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C92D799-D613-4C65-A1EF-D60197C81EAA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{479EB9FA-B535-492F-8A74-2223BA54A12E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{479EB9FA-B535-492F-8A74-2223BA54A12E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{479EB9FA-B535-492F-8A74-2223BA54A12E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{479EB9FA-B535-492F-8A74-2223BA54A12E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D51B0BC0-781A-4D00-807C-6F6E3410A8ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D51B0BC0-781A-4D00-807C-6F6E3410A8ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D51B0BC0-781A-4D00-807C-6F6E3410A8ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
