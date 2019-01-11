@@ -97,6 +97,7 @@
     <Compile Include="AppSettings.cs" />
     <Compile Include="Domain\ConversionMethods.cs" />
     <Compile Include="Domain\NIR4Parameter.cs" />
+    <Compile Include="Logic\FilePathManipulation.cs" />
     <Compile Include="Logic\FileSave.cs" />
     <Compile Include="Logic\ConvertPlsxProcess.cs" />
     <Compile Include="Pages\SelectPlsxFile.xaml.cs">

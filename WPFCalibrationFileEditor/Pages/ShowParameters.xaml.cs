@@ -41,7 +41,11 @@ namespace WPFCalibrationFileEditor
         }
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            new FileSave().Save(viewModel.DataProvider, viewModel.CalibrationFilePath);
+            var outputFilePath = new FilePathManipulation().GetWriteFilePath(viewModel.CalibrationFilePath);
+            using (var stream = new FileStream(outputFilePath, FileMode.Create, FileAccess.Write, FileShare.Delete))
+            {
+                new FileSave(stream).Save(viewModel.DataProvider);
+            }
             System.Windows.Application.Current.Shutdown();
         }     
 
