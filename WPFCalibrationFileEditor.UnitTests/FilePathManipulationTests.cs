@@ -19,7 +19,7 @@ namespace WPFCalibrationFileEditor.UnitTests
                 var date = DateTime.Now.ToString("yyMMdd_hhmmss");
                 var initialFilePath = @"\\madeuppath\test\file.plsx";
                 var finalFilePath = $@"\\madeuppath\test\file_updated_{date}.plsx";
-                var output = new FilePathManipulation().GetWriteFilePath(initialFilePath, date);
+                var output = initialFilePath.GetWriteFilePath();
                 Assert.AreEqual(finalFilePath, output);
             }
         }

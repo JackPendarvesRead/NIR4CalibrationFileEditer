@@ -7,17 +7,16 @@ using System.Threading.Tasks;
 
 namespace WPFCalibrationFileEditor.Logic
 {
-    public class FilePathManipulation
+    public static class FilePathManipulation
     {
-        public string GetWriteFilePath(string filePath)
+        public static string GetWriteFilePath(this string filePath)
         {
-            var date = DateTime.Now.ToString("yyMMdd_hhmmss");
-            return GetWriteFilePath(filePath, date);
+            return filePath.GetWriteFilePath(DateTime.Now.ToString("yyMMdd_hhmmss"));
         }
-        public string GetWriteFilePath(string filePath, string date)
+        public static string GetWriteFilePath(this string filePath, string appendToFilePath)
         {
-            var file = Path.GetFileNameWithoutExtension(filePath);
-            return Path.Combine(Path.GetDirectoryName(filePath), $"{file}_updated_{date}.plsx");
+            var filename = Path.GetFileNameWithoutExtension(filePath);
+            return Path.Combine(Path.GetDirectoryName(filePath), $"{filename}_updated_{appendToFilePath}.plsx");
         }
     }
 }

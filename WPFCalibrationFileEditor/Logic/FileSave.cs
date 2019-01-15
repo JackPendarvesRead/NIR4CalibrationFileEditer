@@ -21,6 +21,6 @@ namespace WPFCalibrationFileEditor.Logic
                 sw.Write(data.GetData());
                 sw.Flush();
             }
-        }   
+        }
     }
 }
