@@ -23,5 +23,12 @@ namespace NIR4CalibrationEditorMethods.Domain
             > (?<code>[^<]+) < [^>]+ >
             ",
             RegexOptions.IgnorePatternWhitespace);
+
+        public static Regex findWavelengthAndLoading = new Regex(@"<coefficient wavelength=""(?<wavelength>[0-9]*)"">(?<loading>[^<]*)</coefficient>");
+
+        public static Regex findMinMaxWavelengths = new Regex(@"<parameter name=""(?<minmax>min|max)Wavelength"">(?<wavelength>[0-9]+)</parameter>");
+
+        //public static Regex findMinWavelengths = new Regex(@"<parameter name=""minWavelength"">(?<wavelength>[0-9]+)</parameter>");
+        //public static Regex findMaxWavelengths = new Regex(@"<parameter name=""maxWavelength"">(?<wavelength>[0-9]+)</parameter>");
     }
 }

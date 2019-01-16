@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="Domain\DataProvider.cs" />
     <Compile Include="Domain\ReplaceEmptyParametersConfig.cs" />
+    <Compile Include="Methods\CheckWavelengthRange.cs" />
     <Compile Include="Methods\IMethod.cs" />
     <Compile Include="Methods\RemoveExponentials.cs" />
     <Compile Include="Methods\ReplaceEmptyParameters.cs" />

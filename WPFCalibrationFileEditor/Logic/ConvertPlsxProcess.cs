@@ -2,6 +2,7 @@
 using NIR4CalibrationEditorMethods.Methods;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Text.RegularExpressions;
 using WPFCalibrationFileEditor.Domain;
 using WPFCalibrationFileEditor.ViewModel;
 
@@ -16,6 +17,7 @@ namespace WPFCalibrationFileEditor.Logic
             {
                 method.Run(data);
             }
+            viewModel.ProductName = GetProductName(data);
             viewModel.Parameters = GetParameters(data);
             viewModel.DataProvider = data;
         }
@@ -29,6 +31,12 @@ namespace WPFCalibrationFileEditor.Logic
                 parameterObserverableCollection.Add(parameter);
             }
             return parameterObserverableCollection;
+        }
+
+        private string GetProductName(DataProvider data)
+        {
+            var regex = new Regex(@"<name>([^<]*)</name>");
+            return regex.Match(data.GetData()).Groups[1].Value;
         }
     }   
 }

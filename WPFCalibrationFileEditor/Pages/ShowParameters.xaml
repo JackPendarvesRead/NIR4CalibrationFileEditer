@@ -19,6 +19,7 @@
             <RowDefinition Height="8*"/>
             <RowDefinition  />
         </Grid.RowDefinitions>
+        <Label Grid.Column="1" Grid.Row="0" Content="{Binding ProductName}" />
         <StackPanel Grid.Column="1" Grid.Row="1">            
             <DataGrid Grid.Column="0" Grid.Row="0" ItemsSource="{Binding Path=Parameters}" ColumnHeaderStyle="{StaticResource columnHeaderStyle}" AutoGenerateColumns="False" RowHeaderWidth="0" CellEditEnding="DataGrid_CellEditEnding">
                 <DataGrid.Columns>

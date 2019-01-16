@@ -65,6 +65,20 @@ namespace WPFCalibrationFileEditor.ViewModel
             }
         }
 
+        private string productName;
+        public string ProductName
+        {
+            get { return calibrationFileName; }
+            set
+            {
+                if (calibrationFileName != value)
+                {
+                    calibrationFileName = value;
+                    NotifyChange("ProductName");
+                }
+            }
+        }
+
         private void NotifyChange(string property)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));

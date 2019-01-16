@@ -12,8 +12,6 @@ namespace WPFCalibrationFileEditor.Domain
     {
         private readonly IEnumerable<ReplaceEmptyParametersConfig> config;
 
-        IEnumerable<IMethod> Methods { get; set; }
-
         public ConversionMethods(IEnumerable<ReplaceEmptyParametersConfig> config)
         {
             this.config = config;
@@ -24,7 +22,8 @@ namespace WPFCalibrationFileEditor.Domain
             var methods = new List<IMethod>()
             {
                 new ReplaceEmptyParameters(config),
-                new RemoveExponentials()
+                new RemoveExponentials(),
+                new CheckWavelengthRange(AppSettings.MinimumWavelength, AppSettings.MaximumWavelength)
             };
             return methods;
         }
