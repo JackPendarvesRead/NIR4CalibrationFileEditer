@@ -68,12 +68,12 @@ namespace WPFCalibrationFileEditor.ViewModel
         private string productName;
         public string ProductName
         {
-            get { return calibrationFileName; }
+            get { return productName; }
             set
             {
-                if (calibrationFileName != value)
+                if (productName != value)
                 {
-                    calibrationFileName = value;
+                    productName = value;
                     NotifyChange("ProductName");
                 }
             }

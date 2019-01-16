@@ -3,8 +3,6 @@ using System.Windows.Controls;
 using System.Windows.Forms;
 using System.IO;
 using WPFCalibrationFileEditor.ViewModel;
-using WPFCalibrationFileEditor.Pages;
-using NIR4CalibrationEditorMethods;
 using NIR4CalibrationEditorMethods.Domain;
 using WPFCalibrationFileEditor.Logic;
 using WPFCalibrationFileEditor.Domain;
