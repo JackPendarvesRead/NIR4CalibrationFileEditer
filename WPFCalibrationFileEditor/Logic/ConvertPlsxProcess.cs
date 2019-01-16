@@ -11,15 +11,15 @@ namespace WPFCalibrationFileEditor.Logic
     public class ConvertPlsxProcess
     {   
         public void Run(PageViewModel viewModel, IEnumerable<IMethod> methods)
-        {
+        {            
             var data = viewModel.DataProvider;
-            foreach(var method in methods)
+            foreach (var method in methods)
             {
                 method.Run(data);
             }
             viewModel.ProductName = GetProductName(data);
             viewModel.Parameters = GetParameters(data);
-            viewModel.DataProvider = data;
+            viewModel.DataProvider = data;           
         }
 
         private ObservableCollection<NIR4Parameter> GetParameters(DataProvider data)

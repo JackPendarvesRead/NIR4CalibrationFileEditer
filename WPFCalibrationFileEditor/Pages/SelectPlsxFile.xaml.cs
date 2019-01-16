@@ -42,14 +42,21 @@ namespace WPFCalibrationFileEditor.Pages
         {
             if(!string.IsNullOrEmpty(viewModel.CalibrationFilePath))
             {
-                using (var stream = new FileStream(viewModel.CalibrationFilePath, FileMode.Open, FileAccess.Read, FileShare.Delete))
+                try
                 {
-                    viewModel.DataProvider = new DataProvider(stream);
+                    using (var stream = new FileStream(viewModel.CalibrationFilePath, FileMode.Open, FileAccess.Read, FileShare.Delete))
+                    {
+                        viewModel.DataProvider = new DataProvider(stream);
+                    }
+                    var config = JacksUsefulLibrary.JsonMethods.JsonReaderWriter<ReplaceEmptyParametersConfig>.LoadFromFile(AppSettings.ParameterConfigurationFilePath);
+                    new ConvertPlsxProcess().Run(viewModel, new ConversionMethods(config).GetStandardMethods());
+                    var parametersPage = new ShowParameters(viewModel);
+                    this.NavigationService.Navigate(parametersPage);
                 }
-                var config = JacksUsefulLibrary.JsonMethods.JsonReaderWriter<ReplaceEmptyParametersConfig>.LoadFromFile(AppSettings.ParameterConfigurationFilePath);
-                new ConvertPlsxProcess().Run(viewModel, new ConversionMethods(config).GetStandardMethods());
-                var parametersPage = new ShowParameters(viewModel);
-                this.NavigationService.Navigate(parametersPage);
+                catch (System.Exception exception)
+                {
+                    System.Windows.Forms.MessageBox.Show(exception.Message);
+                }
             }
             else
             {
