@@ -18,7 +18,7 @@ namespace WPFCalibrationFileEditor.ViewModel
                 if (parameters != value)
                 {
                     parameters = value;
-                    NotifyChange("Parameters");
+                    NotifyChange(nameof(Parameters));
                 }
             }
         }
@@ -32,7 +32,7 @@ namespace WPFCalibrationFileEditor.ViewModel
                 if (dataProvider != value)
                 {
                     dataProvider = value;
-                    NotifyChange("DataProvider");
+                    NotifyChange(nameof(DataProvider));
                 }
             }
         }
@@ -46,7 +46,7 @@ namespace WPFCalibrationFileEditor.ViewModel
                 if (calibrationFilePath != value)
                 {
                     calibrationFilePath = value;
-                    NotifyChange("CalibrationFilePath");
+                    NotifyChange(nameof(CalibrationFilePath));
                 }
             }
         }
@@ -60,7 +60,7 @@ namespace WPFCalibrationFileEditor.ViewModel
                 if (calibrationFileName != value)
                 {
                     calibrationFileName = value;
-                    NotifyChange("CalibrationFileName");
+                    NotifyChange(nameof(CalibrationFileName));
                 }
             }
         }
@@ -74,7 +74,7 @@ namespace WPFCalibrationFileEditor.ViewModel
                 if (productName != value)
                 {
                     productName = value;
-                    NotifyChange("ProductName");
+                    NotifyChange(nameof(ProductName));
                 }
             }
         }
