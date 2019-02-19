@@ -43,6 +43,9 @@
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -55,6 +58,9 @@
     <Reference Include="System.Security" />
     <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -69,43 +75,52 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="Pages\App.xaml">
+    <ApplicationDefinition Include="View\App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AppSettings.cs" />
-    <Compile Include="Domain\ConversionMethods.cs" />
-    <Compile Include="Domain\NIR4Parameter.cs" />
-    <Compile Include="Logic\FilePathManipulation.cs" />
-    <Compile Include="Logic\FileSave.cs" />
-    <Compile Include="Logic\ConvertPlsxProcess.cs" />
-    <Compile Include="Pages\SelectPlsxFile.xaml.cs">
+    <Compile Include="Command\SelectPlsxFileSelectCommand.cs" />
+    <Compile Include="Command\SelectPlsxNavigateCommand.cs" />
+    <Compile Include="Model\PlsxConverter\PlsxConverterMethods\CheckWavelengthRange.cs" />
+    <Compile Include="Model\PlsxConverter\PlsxConverterMethods\IMethod.cs" />
+    <Compile Include="Model\PlsxConverter\PlsxConverterMethods\RemoveExponentials.cs" />
+    <Compile Include="Model\PlsxConverter\PlsxConverterMethods\ReplaceEmptyParameters.cs" />
+    <Compile Include="Model\PlsxConverter\DataProvider.cs" />
+    <Compile Include="Model\NIR4Parameter.cs" />
+    <Compile Include="Model\FilePathManipulation.cs" />
+    <Compile Include="Model\PlsxConverter\PlsxConverterProcess.cs" />
+    <Compile Include="Model\PlsxFileInformation.cs" />
+    <Compile Include="Model\PlsxConverter\RegularExpressions.cs" />
+    <Compile Include="Model\PlsxConverter\ReplaceEmptyParametersConfig.cs" />
+    <Compile Include="ViewModel\SelectPlsxFileViewModel.cs" />
+    <Compile Include="ViewModel\ShowParametersViewModel.cs" />
+    <Compile Include="View\SelectPlsxFile.xaml.cs">
       <DependentUpon>SelectPlsxFile.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\PageViewModel.cs" />
-    <Page Include="Pages\MainWindow.xaml">
+    <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="Pages\App.xaml.cs">
+    <Compile Include="View\App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Pages\MainWindow.xaml.cs">
+    <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Pages\ShowParameters.xaml">
+    <Page Include="View\ShowParameters.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\SelectPlsxFile.xaml">
+    <Page Include="View\SelectPlsxFile.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Pages\ShowParameters.xaml.cs">
+    <Compile Include="View\ShowParameters.xaml.cs">
       <DependentUpon>ShowParameters.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -133,12 +148,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\NIR4CalibrationEditorMethods\NIR4CalibrationEditorMethods.csproj">
-      <Project>{683c8917-a6b3-47fe-a837-d8f27f29de94}</Project>
-      <Name>NIR4CalibrationEditorMethods</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

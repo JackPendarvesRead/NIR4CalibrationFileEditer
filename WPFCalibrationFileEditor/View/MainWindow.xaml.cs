@@ -1,6 +1,6 @@
 ﻿using System.Windows.Navigation;
 
-namespace WPFCalibrationFileEditor
+namespace WPFCalibrationFileEditor.View
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -9,7 +9,6 @@ namespace WPFCalibrationFileEditor
     {
         public MainWindow()
         {
-            //InitializeComponent();
         }
     }
 }

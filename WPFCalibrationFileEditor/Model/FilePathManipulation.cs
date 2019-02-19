@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace WPFCalibrationFileEditor.Logic
+namespace WPFCalibrationFileEditor.Model
 {
     public static class FilePathManipulation
     {

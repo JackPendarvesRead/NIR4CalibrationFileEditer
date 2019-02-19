@@ -50,14 +50,9 @@
     <Compile Include="TestConfig.cs" />
     <Compile Include="TestData.cs" />
     <Compile Include="ConvertPlsxProcessTests.cs" />
-    <Compile Include="FilePathManipulationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NIR4CalibrationEditorMethods\NIR4CalibrationEditorMethods.csproj">
-      <Project>{683C8917-A6B3-47FE-A837-D8F27F29DE94}</Project>
-      <Name>NIR4CalibrationEditorMethods</Name>
-    </ProjectReference>
     <ProjectReference Include="..\WPFCalibrationFileEditor\WPFCalibrationFileEditor.csproj">
       <Project>{4c92d799-d613-4c65-a1ef-d60197c81eaa}</Project>
       <Name>WPFCalibrationFileEditor</Name>

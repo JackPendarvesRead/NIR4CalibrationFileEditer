@@ -1,0 +1,20 @@
+﻿<Page x:Class="WPFCalibrationFileEditor.View.SelectPlsxFile"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WPFCalibrationFileEditor"
+      mc:Ignorable="d" 
+      d:DesignHeight="200
+      " d:DesignWidth="500"
+      Title="NIR4 Calibration File Editer - Select PLSX File">
+   
+    <StackPanel>           
+        <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Top">
+            <Label>Plsx File</Label>
+            <Label Width="Auto" Content="{Binding FileInformation.CalibrationFilePath}" />
+            <Button Command="{Binding FileSelectCommand}">Browse</Button>
+        </DockPanel>
+        <Button Command="{Binding NavigateCommand}">OK</Button>
+    </StackPanel>
+</Page>
