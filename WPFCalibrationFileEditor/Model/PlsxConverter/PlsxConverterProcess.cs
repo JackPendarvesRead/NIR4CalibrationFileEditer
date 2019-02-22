@@ -13,13 +13,13 @@ namespace WPFCalibrationFileEditor.Model.PlsxConverter
     {
         private readonly PlsxFileInformation fileInformation;
         private readonly string config;
-        DataProvider data;
+        public DataProvider Data { get; set; }
 
         public PlsxConverterProcess(PlsxFileInformation fileInformation, string config)
         {
             this.fileInformation = fileInformation;
             this.config = config;
-            this.data = GetDataProvider();
+            this.Data = GetDataProvider();
         }
 
         public void Run()
@@ -32,7 +32,7 @@ namespace WPFCalibrationFileEditor.Model.PlsxConverter
             };
             foreach (var method in methodsToRun)
             {
-                method.Run(data);
+                method.Run(Data);
             }
         }
 
@@ -47,7 +47,7 @@ namespace WPFCalibrationFileEditor.Model.PlsxConverter
 
         public ObservableCollection<NIR4Parameter> GetParameters()
         {
-            var file = data.GetData();
+            var file = Data.GetData();
             var parameterList = new List<NIR4Parameter>();
             var parameters = RegularExpressions.findParameterGroups.Matches(file);
             foreach (Match parameterMatch in parameters)
@@ -72,7 +72,7 @@ namespace WPFCalibrationFileEditor.Model.PlsxConverter
 
         private string GetProductName()
         {            
-            return RegularExpressions.findProductName.Match(data.GetData()).Groups[1].Value;
+            return RegularExpressions.findProductName.Match(Data.GetData()).Groups[1].Value;
         }
     }   
 }

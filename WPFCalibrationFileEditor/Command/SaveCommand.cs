@@ -29,7 +29,6 @@ namespace WPFCalibrationFileEditor.Command
 
         public void Execute(object parameter)
         {
-            var config = parameter.ToString();
             viewModel.Save();
         }
     }

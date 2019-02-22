@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -56,11 +57,11 @@ namespace WPFCalibrationFileEditor.ViewModel
                 var process = new PlsxConverterProcess(FileInformation, config);
                 process.Run();
                 FileInformation.Parameters = process.GetParameters();
+                FileInformation.DataProvider = process.Data;
                 MessageBox.Show("Process run successfully");
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show($"{ex.Message}");
             }
         }
@@ -70,20 +71,22 @@ namespace WPFCalibrationFileEditor.ViewModel
         public ICommand SaveCommand { get; private set; }
         public void Save()
         {
-
+            var filePath = FileInformation.CalibrationFilePath.GetWriteFilePath();
+            using (var stream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.Delete))
+            {
+                var save = new FileSave(stream);
+                save.Save(FileInformation.DataProvider);
+            }
+            MessageBox.Show($"File save succesfully to {filePath}!");            
         }
         public bool CanSave
         {
             get
             {
-                if (FileInformation.Parameters == null) { return false; }
-                else { return true; }
+                if (FileInformation.Parameters != null && FileInformation.DataProvider != null) { return true; }
+                else { return false; }
             }
         }
-
         public ICommand DataGridChangeCommand { get; private set; }
-
-
-
     }
 }

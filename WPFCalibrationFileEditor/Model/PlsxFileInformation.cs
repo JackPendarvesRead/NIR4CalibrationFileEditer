@@ -1,10 +1,13 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
+using WPFCalibrationFileEditor.Model.PlsxConverter;
 
 namespace WPFCalibrationFileEditor.Model
 {
     public class PlsxFileInformation : INotifyPropertyChanged
     {
+        public DataProvider DataProvider { get; set; }
+
         private string calibrationFilePath;
         public string CalibrationFilePath
         {

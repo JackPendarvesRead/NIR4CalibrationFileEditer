@@ -83,6 +83,7 @@
     <Compile Include="Command\RunProcessCommand.cs" />
     <Compile Include="Command\SaveCommand.cs" />
     <Compile Include="Command\SelectFileCommand.cs" />
+    <Compile Include="Model\FileSave.cs" />
     <Compile Include="Model\PlsxConverter\PlsxConverterMethods\CheckWavelengthRange.cs" />
     <Compile Include="Model\PlsxConverter\PlsxConverterMethods\IMethod.cs" />
     <Compile Include="Model\PlsxConverter\PlsxConverterMethods\RemoveExponentials.cs" />
