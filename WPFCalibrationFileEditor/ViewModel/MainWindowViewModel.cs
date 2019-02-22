@@ -78,8 +78,7 @@ namespace WPFCalibrationFileEditor.ViewModel
             {
                 var save = new FileSave(stream);
                 save.Save(FileInformation.DataProvider);
-            }
-            MessageBox.Show($"File save succesfully to {filePath}!");            
+            }           
         }
         public bool CanSave
         {
@@ -93,26 +92,45 @@ namespace WPFCalibrationFileEditor.ViewModel
         public ICommand DataGridChangeCommand { get; private set; }
         public void DataGridChange(string content, string columnHeader)
         {
-            SetData()
+            MessageBox.Show($"content = {content},   header = {columnHeader}");
         }
 
 
-        private void SetData(NIR4Parameter changeParameter, string columnName, string replacement)
-        {
-            var file = FileInformation.DataProvider.GetData();
-            var parameters = RegularExpressions.findParameterGroups.Matches(file);
+        //private void DataGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        //{
+        //    if (e.EditAction == DataGridEditAction.Commit)
+        //    {
+        //        if (e.Column is DataGridBoundColumn column)
+        //        {
+        //            var parameters = viewModel.Parameters;
+        //            var parameter = parameters[e.Row.GetIndex()];
+        //            var originalCode = parameter.Code;
+        //            var bindingPath = (column.Binding as Binding).Path.Path;
+        //            var tb = e.EditingElement as TextBox;
+        //            var value = tb.Text;
+        //            SetData(parameter, bindingPath, value);
+        //            viewModel.Parameters = parameters;
+        //        }
+        //    }
+        //}
 
-            foreach (Match parameter in parameters)
-            {
-                if (parameter.Groups["code"].Value == changeParameter.Code)
-                {
-                    file = file.Replace(
-                        parameter.ToString(),
-                        JacksUsefulLibrary.RegularExpressionMethods.RegexExtensionMethods.ReplaceGroup(RegularExpressions.findParameterGroups, parameter.ToString(), columnName.ToLower(), replacement)
-                        );
-                    FileInformation.DataProvider.SetData(file);
-                }
-            }
-        }
+
+        //private void SetData(NIR4Parameter changeParameter, string columnName, string replacement)
+        //{
+        //    var file = FileInformation.DataProvider.GetData();
+        //    var parameters = RegularExpressions.findParameterGroups.Matches(file);
+
+        //    foreach (Match parameter in parameters)
+        //    {
+        //        if (parameter.Groups["code"].Value == changeParameter.Code)
+        //        {
+        //            file = file.Replace(
+        //                parameter.ToString(),
+        //                JacksUsefulLibrary.RegularExpressionMethods.RegexExtensionMethods.ReplaceGroup(RegularExpressions.findParameterGroups, parameter.ToString(), columnName.ToLower(), replacement)
+        //                );
+        //            FileInformation.DataProvider.SetData(file);
+        //        }
+        //    }
+        //}
     }
 }

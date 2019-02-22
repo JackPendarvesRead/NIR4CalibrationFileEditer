@@ -29,8 +29,8 @@ namespace WPFCalibrationFileEditor.Command
         }
 
         public void Execute(object parameter)
-        {            
-            DataGridCellInfo cell = parameter;
+        {
+            DataGridCellInfo cell = (DataGridCellInfo)parameter;
             var columnHeader = cell.Column.Header.ToString();
             var content = cell.Item.ToString();
             

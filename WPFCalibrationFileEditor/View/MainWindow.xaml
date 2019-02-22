@@ -33,7 +33,7 @@
                 <DataGridTextColumn Header="Code" Binding="{Binding Code}"/>
             </DataGrid.Columns>-->
             <i:Interaction.Triggers>
-                <i:EventTrigger EventName="SelectionChanged">
+                <i:EventTrigger EventName="RowEditEnding">
                     <i:InvokeCommandAction Command="{Binding DataGridChangeCommand}" CommandParameter="{Binding CurrentCell, ElementName=dg}"/>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
