@@ -8,11 +8,11 @@ using WPFCalibrationFileEditor.ViewModel;
 
 namespace WPFCalibrationFileEditor.Command
 {
-    internal class SelectPlsxFileSelectCommand : ICommand
+    internal class SaveCommand : ICommand
     {
-        private readonly SelectPlsxFileViewModel viewModel;
+        private readonly MainWindowViewModel viewModel;
 
-        public SelectPlsxFileSelectCommand(SelectPlsxFileViewModel viewModel)
+        public SaveCommand(MainWindowViewModel viewModel)
         {
             this.viewModel = viewModel;
         }
@@ -24,12 +24,13 @@ namespace WPFCalibrationFileEditor.Command
         }
         public bool CanExecute(object parameter)
         {
-            return true;
+            return viewModel.CanSave;
         }
 
         public void Execute(object parameter)
         {
-            viewModel.SelectFile();
+            var config = parameter.ToString();
+            viewModel.Save();
         }
     }
 }

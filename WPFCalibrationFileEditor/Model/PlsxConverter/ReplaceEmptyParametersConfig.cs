@@ -10,10 +10,5 @@ namespace WPFCalibrationFileEditor.Model.PlsxConverter
         public string Tolerance { get; set; }
         public string Code { get; set; }
         public List<string> MatchingParameter { get; set; }
-
-        public IEnumerable<ReplaceEmptyParametersConfig> GetConfig()
-        {
-            return JacksUsefulLibrary.JsonMethods.JsonReaderWriter<ReplaceEmptyParametersConfig>.LoadFromFile(AppSettings.ParameterConfigurationFilePath);
-        }
     }
 }

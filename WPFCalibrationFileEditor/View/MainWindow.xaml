@@ -1,9 +1,43 @@
-﻿<NavigationWindow x:Class="WPFCalibrationFileEditor.View.MainWindow"
+﻿<Window x:Class="WPFCalibrationFileEditor.View.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFCalibrationFileEditor"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         mc:Ignorable="d"
-        Title="NIR4 calibration file editer" Height="400" Width="550" Source="SelectPlsxFile.xaml">
-</NavigationWindow>
+        Title="NIR4 calibration file editer" Height="800" Width="550">
+
+
+    <StackPanel>
+        <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Top">
+            <Label>Plsx File</Label>
+            <Label Width="Auto" Content="{Binding FileInformation.CalibrationFilePath}" />
+            <Button Command="{Binding SelectFileCommand}">Browse</Button>
+        </DockPanel>
+        
+        <StackPanel Orientation="Horizontal">
+            <ComboBox Name="combo">
+                <ComboBoxItem IsSelected="True">Farm</ComboBoxItem>
+                <ComboBoxItem>Feed</ComboBoxItem>
+            </ComboBox>
+            <Button Command="{Binding RunProcessCommand}" CommandParameter="{Binding Text, ElementName=combo}">Ok</Button>
+        </StackPanel>
+        
+        <DataGrid ItemsSource="{Binding FileInformation.Parameters}" ColumnHeaderStyle="{StaticResource columnHeaderStyle}" >
+            <!--<DataGrid.Columns>
+                <DataGridTextColumn Header="Label" Binding="{Binding Label}"/>
+                <DataGridTextColumn Header="Unit" Binding="{Binding Unit}"/>
+                <DataGridTextColumn Header="Order" Binding="{Binding Order}"/>
+                <DataGridTextColumn Header="Tolerance" Binding="{Binding Tolerance}"/>
+                <DataGridTextColumn Header="Code" Binding="{Binding Code}"/>
+            </DataGrid.Columns>-->
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <i:InvokeCommandAction Command="{Binding DataGridChangeCommand}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </DataGrid>        
+        <Button Command="{Binding SaveCommand}">Save</Button>        
+    </StackPanel>
+</Window>

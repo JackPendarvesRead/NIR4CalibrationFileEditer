@@ -12,40 +12,25 @@ namespace WPFCalibrationFileEditor.Model.PlsxConverter
     public class PlsxConverterProcess
     {
         private readonly PlsxFileInformation fileInformation;
+        private readonly string config;
         DataProvider data;
 
-        public PlsxConverterProcess(PlsxFileInformation fileInformation)
+        public PlsxConverterProcess(PlsxFileInformation fileInformation, string config)
         {
             this.fileInformation = fileInformation;
+            this.config = config;
             this.data = GetDataProvider();
         }
 
         public void Run()
-        {            
-            RunConverterMethods();
-            var viewModel = GetNewViewModel();
-            var page = new ShowParameters(viewModel);
-            page.NavigationService.Navigate(page);
-        }
-        
-        private ShowParametersViewModel GetNewViewModel()
-        {
-            var viewModel = new ShowParametersViewModel
-            {
-
-            };
-            return viewModel;
-        }
-
-        private void RunConverterMethods()
         {
             var methodsToRun = new List<IMethod>
             {
                 new CheckWavelengthRange(),
                 new RemoveExponentials(),
-                new ReplaceEmptyParameters()
+                new ReplaceEmptyParameters(config)
             };
-            foreach(var method in methodsToRun)
+            foreach (var method in methodsToRun)
             {
                 method.Run(data);
             }
@@ -60,7 +45,7 @@ namespace WPFCalibrationFileEditor.Model.PlsxConverter
             }
         }
 
-        private ObservableCollection<NIR4Parameter> GetParameters()
+        public ObservableCollection<NIR4Parameter> GetParameters()
         {
             var file = data.GetData();
             var parameterList = new List<NIR4Parameter>();
@@ -78,7 +63,7 @@ namespace WPFCalibrationFileEditor.Model.PlsxConverter
                 parameterList.Add(parameter);
             }
             var parameterObserverableCollection = new ObservableCollection<NIR4Parameter>();
-            foreach (NIR4Parameter parameter in parameters)
+            foreach (NIR4Parameter parameter in parameterList)
             {
                 parameterObserverableCollection.Add(parameter);
             }

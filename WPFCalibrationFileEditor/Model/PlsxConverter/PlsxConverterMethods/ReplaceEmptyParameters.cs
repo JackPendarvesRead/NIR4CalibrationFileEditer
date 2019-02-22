@@ -1,4 +1,5 @@
 ﻿using log4net;
+using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using WPFCalibrationFileEditor.Model;
@@ -15,9 +16,24 @@ namespace WPFCalibrationFileEditor.PlsxConverter.PlsxConverterMethods
         {
             this.config = config;
         }
-        public ReplaceEmptyParameters()
+        public ReplaceEmptyParameters(string configKey)
         {
-            this.config = JacksUsefulLibrary.JsonMethods.JsonReaderWriter<ReplaceEmptyParametersConfig>.LoadFromFile(AppSettings.ParameterConfigurationFilePath);
+            this.config = JacksUsefulLibrary.JsonMethods.JsonReaderWriter<ReplaceEmptyParametersConfig>.LoadFromFile(GetConfigString(configKey));
+        }
+
+        private string GetConfigString(string configKey)
+        {
+            switch (configKey.ToLower())
+            {
+                case "feed":
+                    return AppSettings.FeedParameterConfigurationFilePath;
+
+                case "farm":
+                    return AppSettings.FarmParameterConfigurationFilePath;
+
+                default:
+                    throw new Exception("Could not get config from configKey.");
+            }
         }
 
         /// <summary>
