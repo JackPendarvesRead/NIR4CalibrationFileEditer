@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Input;
@@ -20,6 +21,7 @@ namespace WPFCalibrationFileEditor.ViewModel
             FileInformation = new PlsxFileInformation();
             SelectFileCommand = new SelectFileCommand(this);
             RunProcessCommand = new RunProcessCommand(this);
+            DataGridChangeCommand = new DataGridChangeCommand(this);
             SaveCommand = new SaveCommand(this);
         }
         
@@ -87,6 +89,30 @@ namespace WPFCalibrationFileEditor.ViewModel
                 else { return false; }
             }
         }
+
         public ICommand DataGridChangeCommand { get; private set; }
+        public void DataGridChange(string content, string columnHeader)
+        {
+            SetData()
+        }
+
+
+        private void SetData(NIR4Parameter changeParameter, string columnName, string replacement)
+        {
+            var file = FileInformation.DataProvider.GetData();
+            var parameters = RegularExpressions.findParameterGroups.Matches(file);
+
+            foreach (Match parameter in parameters)
+            {
+                if (parameter.Groups["code"].Value == changeParameter.Code)
+                {
+                    file = file.Replace(
+                        parameter.ToString(),
+                        JacksUsefulLibrary.RegularExpressionMethods.RegexExtensionMethods.ReplaceGroup(RegularExpressions.findParameterGroups, parameter.ToString(), columnName.ToLower(), replacement)
+                        );
+                    FileInformation.DataProvider.SetData(file);
+                }
+            }
+        }
     }
 }

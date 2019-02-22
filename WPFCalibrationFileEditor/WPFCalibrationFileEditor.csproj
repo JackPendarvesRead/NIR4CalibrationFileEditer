@@ -80,6 +80,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AppSettings.cs" />
+    <Compile Include="Command\DataGridChangeCommand.cs" />
     <Compile Include="Command\RunProcessCommand.cs" />
     <Compile Include="Command\SaveCommand.cs" />
     <Compile Include="Command\SelectFileCommand.cs" />

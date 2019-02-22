@@ -24,7 +24,7 @@
             <Button Command="{Binding RunProcessCommand}" CommandParameter="{Binding Text, ElementName=combo}">Ok</Button>
         </StackPanel>
         
-        <DataGrid ItemsSource="{Binding FileInformation.Parameters}" ColumnHeaderStyle="{StaticResource columnHeaderStyle}" >
+        <DataGrid Name="dg" ItemsSource="{Binding FileInformation.Parameters}" ColumnHeaderStyle="{StaticResource columnHeaderStyle}" >
             <!--<DataGrid.Columns>
                 <DataGridTextColumn Header="Label" Binding="{Binding Label}"/>
                 <DataGridTextColumn Header="Unit" Binding="{Binding Unit}"/>
@@ -34,7 +34,7 @@
             </DataGrid.Columns>-->
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="SelectionChanged">
-                    <i:InvokeCommandAction Command="{Binding DataGridChangeCommand}" />
+                    <i:InvokeCommandAction Command="{Binding DataGridChangeCommand}" CommandParameter="{Binding CurrentCell, ElementName=dg}"/>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </DataGrid>        
