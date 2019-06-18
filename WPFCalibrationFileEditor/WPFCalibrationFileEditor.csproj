@@ -80,22 +80,22 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AppSettings.cs" />
-    <Compile Include="Command\DataGridChangeCommand.cs" />
-    <Compile Include="Command\RunProcessCommand.cs" />
-    <Compile Include="Command\SaveCommand.cs" />
-    <Compile Include="Command\SelectFileCommand.cs" />
-    <Compile Include="Model\FileSave.cs" />
-    <Compile Include="Model\PlsxConverter\PlsxConverterMethods\CheckWavelengthRange.cs" />
-    <Compile Include="Model\PlsxConverter\PlsxConverterMethods\IMethod.cs" />
-    <Compile Include="Model\PlsxConverter\PlsxConverterMethods\RemoveExponentials.cs" />
-    <Compile Include="Model\PlsxConverter\PlsxConverterMethods\ReplaceEmptyParameters.cs" />
-    <Compile Include="Model\PlsxConverter\DataProvider.cs" />
+    <Compile Include="ViewModel\Command\DataGridChangeCommand.cs" />
+    <Compile Include="ViewModel\Command\RunProcessCommand.cs" />
+    <Compile Include="ViewModel\Command\SaveCommand.cs" />
+    <Compile Include="ViewModel\Command\SelectFileCommand.cs" />
+    <Compile Include="Logic\FileSave.cs" />
+    <Compile Include="Logic\PlsxConverter\PlsxConverterMethods\CheckWavelengthRange.cs" />
+    <Compile Include="Logic\PlsxConverter\PlsxConverterMethods\IMethod.cs" />
+    <Compile Include="Logic\PlsxConverter\PlsxConverterMethods\RemoveExponentials.cs" />
+    <Compile Include="Logic\PlsxConverter\PlsxConverterMethods\ReplaceEmptyParameters.cs" />
+    <Compile Include="Logic\PlsxConverter\DataProvider.cs" />
     <Compile Include="Model\NIR4Parameter.cs" />
-    <Compile Include="Model\FilePathManipulation.cs" />
-    <Compile Include="Model\PlsxConverter\PlsxConverterProcess.cs" />
+    <Compile Include="Logic\FilePathManipulation.cs" />
+    <Compile Include="Logic\PlsxConverter\PlsxConverterProcess.cs" />
     <Compile Include="Model\PlsxFileInformation.cs" />
-    <Compile Include="Model\PlsxConverter\RegularExpressions.cs" />
-    <Compile Include="Model\PlsxConverter\ReplaceEmptyParametersConfig.cs" />
+    <Compile Include="Logic\PlsxConverter\RegularExpressions.cs" />
+    <Compile Include="Logic\PlsxConverter\ReplaceEmptyParametersConfig.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace WPFCalibrationFileEditor.Model.PlsxConverter
+namespace WPFCalibrationFileEditor.Logic.PlsxConverter
 {
     public class ReplaceEmptyParametersConfig
     {

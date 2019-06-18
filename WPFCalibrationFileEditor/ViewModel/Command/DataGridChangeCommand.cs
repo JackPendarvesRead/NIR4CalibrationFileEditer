@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
-using WPFCalibrationFileEditor.ViewModel;
+using WPFCalibrationFileEditor.Model;
 
-namespace WPFCalibrationFileEditor.Command
+namespace WPFCalibrationFileEditor.ViewModel.Command
 {
     internal class DataGridChangeCommand : ICommand
     {
@@ -30,11 +26,11 @@ namespace WPFCalibrationFileEditor.Command
 
         public void Execute(object parameter)
         {
-            DataGridCellInfo cell = (DataGridCellInfo)parameter;
+            DataGridCellInfo cell = (DataGridCellInfo)parameter;            
             var columnHeader = cell.Column.Header.ToString();
-            var content = cell.Item.ToString();
+            NIR4Parameter nirParameter = (NIR4Parameter)cell.Item;
             
-            viewModel.DataGridChange(content, columnHeader);
+            viewModel.DataGridChange(nirParameter, columnHeader);
         }
     }
 }

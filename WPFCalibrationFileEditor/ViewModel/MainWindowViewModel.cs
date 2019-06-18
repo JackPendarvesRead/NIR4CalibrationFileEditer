@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Input;
-using WPFCalibrationFileEditor.Command;
+using WPFCalibrationFileEditor.ViewModel.Command;
 using WPFCalibrationFileEditor.Model;
-using WPFCalibrationFileEditor.Model.PlsxConverter;
+using WPFCalibrationFileEditor.Logic.PlsxConverter;
+using WPFCalibrationFileEditor.Logic;
 
 namespace WPFCalibrationFileEditor.ViewModel
 {
@@ -60,7 +56,6 @@ namespace WPFCalibrationFileEditor.ViewModel
                 process.Run();
                 FileInformation.Parameters = process.GetParameters();
                 FileInformation.DataProvider = process.Data;
-                MessageBox.Show("Process run successfully");
             }
             catch (Exception ex)
             {
@@ -78,7 +73,8 @@ namespace WPFCalibrationFileEditor.ViewModel
             {
                 var save = new FileSave(stream);
                 save.Save(FileInformation.DataProvider);
-            }           
+            }
+            MessageBox.Show("Save successful.");
         }
         public bool CanSave
         {
@@ -90,47 +86,74 @@ namespace WPFCalibrationFileEditor.ViewModel
         }
 
         public ICommand DataGridChangeCommand { get; private set; }
-        public void DataGridChange(string content, string columnHeader)
+        public void DataGridChange(NIR4Parameter parameter, string columnHeader)
         {
-            MessageBox.Show($"content = {content},   header = {columnHeader}");
+            //var replaceString = GetReplaceString(parameter, columnHeader);
+            //var originalParameter = GetOriginalParameter(parameter, columnHeader);
+            //UpdateDataProvider(originalParameter, columnHeader, replaceString);
+                
         }
 
+        private NIR4Parameter GetOriginalParameter(NIR4Parameter parameter, string colummHeader)
+        {   
+            foreach(var originalParameter in FileInformation.Parameters)
+            {
+                if(colummHeader.ToLower() != "code")
+                {
+                    if(parameter.Code == originalParameter.Code)
+                    {
+                        return originalParameter;
+                    }
+                }
+                else
+                {
+                    if(parameter.Label == originalParameter.Label)
+                    {
+                        return originalParameter;
+                    }
+                }
+            }
+            throw new Exception("Could not find original parameter.");
+        }
 
-        //private void DataGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
-        //{
-        //    if (e.EditAction == DataGridEditAction.Commit)
-        //    {
-        //        if (e.Column is DataGridBoundColumn column)
-        //        {
-        //            var parameters = viewModel.Parameters;
-        //            var parameter = parameters[e.Row.GetIndex()];
-        //            var originalCode = parameter.Code;
-        //            var bindingPath = (column.Binding as Binding).Path.Path;
-        //            var tb = e.EditingElement as TextBox;
-        //            var value = tb.Text;
-        //            SetData(parameter, bindingPath, value);
-        //            viewModel.Parameters = parameters;
-        //        }
-        //    }
-        //}
+        private string GetReplaceString(NIR4Parameter parameter, string columnHeader)
+        {
+            switch(columnHeader.ToLower())
+            {
+                case "order":
+                    return parameter.Order;
+                case "tolerance":
+                    return parameter.Tolerance;
+                case "label":
+                    return parameter.Label;
+                case "unit":
+                    return parameter.Unit;
+                case "code":
+                    return parameter.Code;
+                default:
+                    throw new Exception("Column header not found.");
+            }
+        }
+        private void UpdateDataProvider(NIR4Parameter changeParameter, string columnName, string replacement)
+        {
+            var file = FileInformation.DataProvider.GetData();
+            var parameters = RegularExpressions.findParameterGroups.Matches(file);
 
-
-        //private void SetData(NIR4Parameter changeParameter, string columnName, string replacement)
-        //{
-        //    var file = FileInformation.DataProvider.GetData();
-        //    var parameters = RegularExpressions.findParameterGroups.Matches(file);
-
-        //    foreach (Match parameter in parameters)
-        //    {
-        //        if (parameter.Groups["code"].Value == changeParameter.Code)
-        //        {
-        //            file = file.Replace(
-        //                parameter.ToString(),
-        //                JacksUsefulLibrary.RegularExpressionMethods.RegexExtensionMethods.ReplaceGroup(RegularExpressions.findParameterGroups, parameter.ToString(), columnName.ToLower(), replacement)
-        //                );
-        //            FileInformation.DataProvider.SetData(file);
-        //        }
-        //    }
-        //}
+            foreach (Match parameter in parameters)
+            {
+                if (parameter.Groups["code"].Value == changeParameter.Code)
+                {
+                    file = file.Replace(
+                        parameter.ToString(),
+                        JacksUsefulLibrary.RegularExpressionMethods.RegexExtensionMethods.ReplaceGroup(
+                            RegularExpressions.findParameterGroups, 
+                            parameter.ToString(), 
+                            columnName.ToLower(), 
+                            replacement)
+                        );
+                    FileInformation.DataProvider.SetData(file);
+                }
+            }
+        }
     }
 }

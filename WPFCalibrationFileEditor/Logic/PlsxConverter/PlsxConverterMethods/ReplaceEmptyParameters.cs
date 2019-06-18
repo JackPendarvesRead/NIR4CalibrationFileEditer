@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using WPFCalibrationFileEditor.Model;
-using WPFCalibrationFileEditor.Model.PlsxConverter;
+using WPFCalibrationFileEditor.Logic.PlsxConverter;
 
-namespace WPFCalibrationFileEditor.PlsxConverter.PlsxConverterMethods
+namespace WPFCalibrationFileEditor.Logic.PlsxConverter.PlsxConverterMethods
 {
     public class ReplaceEmptyParameters : IMethod
     {

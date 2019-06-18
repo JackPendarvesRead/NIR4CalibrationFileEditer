@@ -1,13 +1,13 @@
 ﻿using System;
 using System.IO;
 
-namespace WPFCalibrationFileEditor.Model
+namespace WPFCalibrationFileEditor.Logic
 {
     public static class FilePathManipulation
     {
         public static string GetWriteFilePath(this string filePath)
         {
-            return filePath.GetWriteFilePath(DateTime.Now.ToString("yyMMdd_hhmmss"));
+            return filePath.GetWriteFilePath(DateTime.Now.ToString("yyMMdd_HHmmss"));
         }
         public static string GetWriteFilePath(this string filePath, string appendToFilePath)
         {

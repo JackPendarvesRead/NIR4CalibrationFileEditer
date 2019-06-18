@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Text.RegularExpressions;
-using WPFCalibrationFileEditor.PlsxConverter.PlsxConverterMethods;
-using WPFCalibrationFileEditor.View;
-using WPFCalibrationFileEditor.ViewModel;
+using WPFCalibrationFileEditor.Logic.PlsxConverter.PlsxConverterMethods;
+using WPFCalibrationFileEditor.Model;
 
-namespace WPFCalibrationFileEditor.Model.PlsxConverter
+namespace WPFCalibrationFileEditor.Logic.PlsxConverter
 {
     public class PlsxConverterProcess
     {

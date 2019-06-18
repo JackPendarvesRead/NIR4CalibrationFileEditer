@@ -4,9 +4,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WPFCalibrationFileEditor.Model.PlsxConverter;
+using WPFCalibrationFileEditor.Logic.PlsxConverter;
 
-namespace WPFCalibrationFileEditor.Model
+namespace WPFCalibrationFileEditor.Logic
 {
     internal class FileSave
     {

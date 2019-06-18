@@ -1,18 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
-using WPFCalibrationFileEditor.ViewModel;
 
-namespace WPFCalibrationFileEditor.Command
+namespace WPFCalibrationFileEditor.ViewModel.Command
 {
-    internal class SelectFileCommand : ICommand
+    internal class RunProcessCommand : ICommand
     {
         private readonly MainWindowViewModel viewModel;
 
-        public SelectFileCommand(MainWindowViewModel viewModel)
+        public RunProcessCommand(MainWindowViewModel viewModel)
         {
             this.viewModel = viewModel;
         }
@@ -24,12 +19,13 @@ namespace WPFCalibrationFileEditor.Command
         }
         public bool CanExecute(object parameter)
         {
-            return viewModel.CanSelectFile;
+            return viewModel.CanRunProcess;
         }
 
         public void Execute(object parameter)
         {
-            viewModel.SelectFile();
+            var config = parameter.ToString();
+            viewModel.RunProcess(config);
         }
     }
 }

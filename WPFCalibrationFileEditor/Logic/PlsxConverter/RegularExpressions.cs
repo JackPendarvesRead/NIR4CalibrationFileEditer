@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace WPFCalibrationFileEditor.Model.PlsxConverter
+namespace WPFCalibrationFileEditor.Logic.PlsxConverter
 {
     public static class RegularExpressions
     {
