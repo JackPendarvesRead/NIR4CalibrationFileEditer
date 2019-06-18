@@ -4,6 +4,11 @@ namespace WPFCalibrationFileEditor.Model
 {
     public class NIR4Parameter : INotifyPropertyChanged
     {
+        public override string ToString()
+        {
+            return $@"<parameter tolerance=""{this.Tolerance}"" label=""{this.Label}"" unit=""{this.Unit}"" order=""{this.Order}"">{this.Code}</parameter>";
+        }
+
         private string code;
         public string Code
         {
