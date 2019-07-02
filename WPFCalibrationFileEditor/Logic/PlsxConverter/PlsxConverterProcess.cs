@@ -25,6 +25,7 @@ namespace WPFCalibrationFileEditor.Logic.PlsxConverter
             var methodsToRun = new List<IMethod>
             {
                 new CheckWavelengthRange(),
+                new CheckResolution(),
                 new RemoveExponentials(),
                 new ReplaceEmptyParameters(config)
             };

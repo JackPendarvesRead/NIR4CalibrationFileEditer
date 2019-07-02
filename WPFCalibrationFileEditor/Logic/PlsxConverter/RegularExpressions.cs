@@ -13,6 +13,8 @@ namespace WPFCalibrationFileEditor.Logic.PlsxConverter
 
         public static Regex findEmptyParameter = new Regex(@"<parameter>(?<code>[^<]*)</parameter>");
 
+        public static Regex findResolution = new Regex(@"<parameter name=""resolution"">([0-9]+)</parameter>");
+
         public static Regex findParameterGroups = new Regex(
             @"
             <parameter \s tol
