@@ -81,7 +81,6 @@
     </ApplicationDefinition>
     <Compile Include="AppSettings.cs" />
     <Compile Include="Logic\PlsxConverter\PlsxConverterMethods\CheckResolution.cs" />
-    <Compile Include="ViewModel\Command\DataGridChangeCommand.cs" />
     <Compile Include="ViewModel\Command\RunProcessCommand.cs" />
     <Compile Include="ViewModel\Command\SaveCommand.cs" />
     <Compile Include="ViewModel\Command\SelectFileCommand.cs" />
@@ -137,9 +136,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="waste.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

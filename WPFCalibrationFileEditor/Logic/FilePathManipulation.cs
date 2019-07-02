@@ -9,6 +9,7 @@ namespace WPFCalibrationFileEditor.Logic
         {
             return filePath.GetWriteFilePath(DateTime.Now.ToString("yyMMdd_HHmmss"));
         }
+
         public static string GetWriteFilePath(this string filePath, string appendToFilePath)
         {
             var filename = Path.GetFileNameWithoutExtension(filePath);
