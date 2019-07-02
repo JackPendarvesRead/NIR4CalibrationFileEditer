@@ -19,7 +19,7 @@ namespace WPFCalibrationFileEditor.ViewModel.Command
         }
         public bool CanExecute(object parameter)
         {
-            return viewModel.CanSelectFile;
+            return true;
         }
 
         public void Execute(object parameter)

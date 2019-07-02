@@ -50,7 +50,7 @@ namespace WPFCalibrationFileEditor.Logic.PlsxConverter
             var parameters = RegularExpressions.findParameterGroups.Matches(file);
             foreach (Match parameterMatch in parameters)
             {
-                var parameter = new NIR4Parameter()
+                var parameter = new NIR4Parameter(this.Data)
                 {
                     Code = parameterMatch.Groups["code"].Value,
                     Label = parameterMatch.Groups["label"].Value,

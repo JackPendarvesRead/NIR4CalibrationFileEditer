@@ -8,10 +8,12 @@ namespace WPFCalibrationFileEditor.Logic.PlsxConverter
     public class DataProvider
     {
         private string data;
+
         public DataProvider(string data)
         {
             SetData(data);
         }
+
         public DataProvider(Stream dataStream)
         {
             using(var sr = new StreamReader(dataStream, Encoding.Default, true, 1024, true))
@@ -21,10 +23,12 @@ namespace WPFCalibrationFileEditor.Logic.PlsxConverter
                 SetData(data);
             }
         }
+
         public string GetData()
         {
             return data;
         }
+
         public void SetData(string data)
         {
             if (data.Length > 0)
@@ -33,23 +37,17 @@ namespace WPFCalibrationFileEditor.Logic.PlsxConverter
             }
         }
 
-        public void UpdateDataProviderParameters(NIR4Parameter changeParameter, string columnName, string replacement)
+        public void UpdateDataProviderParameters(NIR4Parameter changeParameter)
         {
             var file = GetData();
-            var parameters = RegularExpressions.findParameterGroups.Matches(file);
+            var fileParameters = RegularExpressions.findParameterGroups.Matches(file);
 
-            foreach (Match parameter in parameters)
+            foreach(Match fileParameter in fileParameters)
             {
-                if (parameter.Groups["code"].Value == changeParameter.Code)
+                if(fileParameter.Groups["code"].Value == changeParameter.Code
+                    || fileParameter.Groups["label"].Value == changeParameter.Label)
                 {
-                    file = file.Replace(
-                        parameter.ToString(),
-                        JacksUsefulLibrary.RegularExpressionMethods.RegexExtensionMethods.ReplaceGroup(
-                            RegularExpressions.findParameterGroups,
-                            parameter.ToString(),
-                            columnName.ToLower(),
-                            replacement)
-                        );
+                    file = file.Replace(fileParameter.Value, changeParameter.ToString());
                     SetData(file);
                 }
             }

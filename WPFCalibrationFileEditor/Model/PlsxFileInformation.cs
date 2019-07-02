@@ -1,5 +1,7 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using WPFCalibrationFileEditor.Logic.PlsxConverter;
 
 namespace WPFCalibrationFileEditor.Model
@@ -30,15 +32,6 @@ namespace WPFCalibrationFileEditor.Model
             {
                 if (parameters != value)
                 {
-                    //if (parameters != null)
-                    //{
-                    //    var newParameters = value;
-                    //    var changedParameter = (from np in newParameters
-                    //                            from p in parameters
-                    //                            where np != p
-                    //                            select np).First();
-                    //}
-
                     parameters = value;
                     NotifyChange(nameof(Parameters));
                 }

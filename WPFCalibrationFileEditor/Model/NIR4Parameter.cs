@@ -1,13 +1,37 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
+using WPFCalibrationFileEditor.Logic.PlsxConverter;
 
 namespace WPFCalibrationFileEditor.Model
 {
     public class NIR4Parameter : INotifyPropertyChanged
     {
+
+        private readonly DataProvider dataProvider;
+
+        public NIR4Parameter(DataProvider dataProvider)
+        {
+            this.dataProvider = dataProvider;
+        }
+
+
         public override string ToString()
         {
             return $@"<parameter tolerance=""{this.Tolerance}"" label=""{this.Label}"" unit=""{this.Unit}"" order=""{this.Order}"">{this.Code}</parameter>";
+        } 
+
+        private void UpdateDataProvider()
+        {
+            if(this.Code != null                 
+                && this.Label != null 
+                && this.Unit != null
+                && this.Order != null
+                && this.Tolerance != null)
+            {
+                this.dataProvider.UpdateDataProviderParameters(this);
+            }
         }
+
 
         private string code;
         public string Code
@@ -19,6 +43,7 @@ namespace WPFCalibrationFileEditor.Model
                 {
                     code = value;
                     NotifyChange(nameof(Code));
+                    UpdateDataProvider();
                 }
             }
         }
@@ -33,6 +58,7 @@ namespace WPFCalibrationFileEditor.Model
                 {
                     label = value;
                     NotifyChange(nameof(Label));
+                    UpdateDataProvider();
                 }
             }
         }
@@ -47,6 +73,7 @@ namespace WPFCalibrationFileEditor.Model
                 {
                     unit = value;
                     NotifyChange(nameof(Unit));
+                    UpdateDataProvider();
                 }
             }
         }
@@ -61,11 +88,13 @@ namespace WPFCalibrationFileEditor.Model
                 {
                     order = value;
                     NotifyChange(nameof(Order));
+                    UpdateDataProvider();
                 }
             }
         }
 
         private string tolerance;
+
         public string Tolerance
         {
             get { return tolerance; }
@@ -75,6 +104,7 @@ namespace WPFCalibrationFileEditor.Model
                 {
                     tolerance = value;
                     NotifyChange(nameof(Tolerance));
+                    UpdateDataProvider();
                 }
             }
         }  

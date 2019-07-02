@@ -12,20 +12,27 @@ namespace WPFCalibrationFileEditor.ViewModel
 {
     public class MainWindowViewModel
     {
+        #region Commands
+        public ICommand SaveCommand { get; private set; }
+        public ICommand RunProcessCommand { get; private set; }
+        public ICommand SelectFileCommand { get; private set; }
+        #endregion
+
         public MainWindowViewModel()
         {
             FileInformation = new PlsxFileInformation();
             SelectFileCommand = new SelectFileCommand(this);
             RunProcessCommand = new RunProcessCommand(this);
-            DataGridChangeCommand = new DataGridChangeCommand(this);
             SaveCommand = new SaveCommand(this);
         }
-        
+
+        #region Fields
         public PlsxFileInformation FileInformation { get; set; }
         public string ConfigurationFileToUse { get; set; }
+        #endregion
 
-        public ICommand SelectFileCommand { get; private set; }
-        public bool CanSelectFile { get => true; }
+        #region Methods
+
         public void SelectFile()
         {
             OpenFileDialog ofd = new OpenFileDialog
@@ -37,9 +44,8 @@ namespace WPFCalibrationFileEditor.ViewModel
             {
                 FileInformation.CalibrationFilePath = ofd.FileName;
             }
-        } 
+        }
 
-        public ICommand RunProcessCommand { get; private set; }
         public bool CanRunProcess
         {
             get
@@ -62,10 +68,9 @@ namespace WPFCalibrationFileEditor.ViewModel
                 MessageBox.Show($"{ex.Message}");
             }
         }
-        
 
 
-        public ICommand SaveCommand { get; private set; }
+
         public void Save()
         {
             var filePath = FileInformation.CalibrationFilePath.GetWriteFilePath();
@@ -83,77 +88,8 @@ namespace WPFCalibrationFileEditor.ViewModel
                 if (FileInformation.Parameters != null && FileInformation.DataProvider != null) { return true; }
                 else { return false; }
             }
-        }
+        }       
 
-        public ICommand DataGridChangeCommand { get; private set; }
-        public void DataGridChange(NIR4Parameter parameter, string columnHeader)
-        {
-            //var replaceString = GetReplaceString(parameter, columnHeader);
-            //var originalParameter = GetOriginalParameter(parameter, columnHeader);
-            //UpdateDataProvider(originalParameter, columnHeader, replaceString);
-                
-        }
-
-        private NIR4Parameter GetOriginalParameter(NIR4Parameter parameter, string colummHeader)
-        {   
-            foreach(var originalParameter in FileInformation.Parameters)
-            {
-                if(colummHeader.ToLower() != "code")
-                {
-                    if(parameter.Code == originalParameter.Code)
-                    {
-                        return originalParameter;
-                    }
-                }
-                else
-                {
-                    if(parameter.Label == originalParameter.Label)
-                    {
-                        return originalParameter;
-                    }
-                }
-            }
-            throw new Exception("Could not find original parameter.");
-        }
-
-        private string GetReplaceString(NIR4Parameter parameter, string columnHeader)
-        {
-            switch(columnHeader.ToLower())
-            {
-                case "order":
-                    return parameter.Order;
-                case "tolerance":
-                    return parameter.Tolerance;
-                case "label":
-                    return parameter.Label;
-                case "unit":
-                    return parameter.Unit;
-                case "code":
-                    return parameter.Code;
-                default:
-                    throw new Exception("Column header not found.");
-            }
-        }
-        private void UpdateDataProvider(NIR4Parameter changeParameter, string columnName, string replacement)
-        {
-            var file = FileInformation.DataProvider.GetData();
-            var parameters = RegularExpressions.findParameterGroups.Matches(file);
-
-            foreach (Match parameter in parameters)
-            {
-                if (parameter.Groups["code"].Value == changeParameter.Code)
-                {
-                    file = file.Replace(
-                        parameter.ToString(),
-                        JacksUsefulLibrary.RegularExpressionMethods.RegexExtensionMethods.ReplaceGroup(
-                            RegularExpressions.findParameterGroups, 
-                            parameter.ToString(), 
-                            columnName.ToLower(), 
-                            replacement)
-                        );
-                    FileInformation.DataProvider.SetData(file);
-                }
-            }
-        }
+        #endregion
     }
 }

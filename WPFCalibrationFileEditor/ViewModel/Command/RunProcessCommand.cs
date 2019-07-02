@@ -18,7 +18,7 @@ namespace WPFCalibrationFileEditor.ViewModel.Command
             remove { CommandManager.RequerySuggested -= value; }
         }
         public bool CanExecute(object parameter)
-        {
+        {            
             return viewModel.CanRunProcess;
         }
 
