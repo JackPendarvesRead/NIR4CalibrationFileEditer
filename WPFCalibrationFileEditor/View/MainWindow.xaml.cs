@@ -11,7 +11,6 @@ namespace WPFCalibrationFileEditor.View
     {
         public MainWindow()
         {
-            DataContext = new MainWindowViewModel();
         }
     }
 }

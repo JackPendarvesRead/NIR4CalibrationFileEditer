@@ -7,6 +7,8 @@ using WPFCalibrationFileEditor.ViewModel.Command;
 using WPFCalibrationFileEditor.Model;
 using WPFCalibrationFileEditor.Logic.PlsxConverter;
 using WPFCalibrationFileEditor.Logic;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace WPFCalibrationFileEditor.ViewModel
 {
@@ -26,9 +28,22 @@ namespace WPFCalibrationFileEditor.ViewModel
             SaveCommand = new SaveCommand(this);
         }
 
+        public List<string> aaa = new List<string>() {"1", "2", "3"};
+
         #region Fields
+
+        public ObservableCollection<MyParamterConfig> ParameterConfig
+        {
+            get
+            {
+                var configImporter = new ParameterConfigFinder();
+                var configs = configImporter.Import();
+                return new ObservableCollection<MyParamterConfig>(configs);
+            }
+        }
+        
+
         public PlsxFileInformation FileInformation { get; set; }
-        public string ConfigurationFileToUse { get; set; }
         #endregion
 
         #region Methods

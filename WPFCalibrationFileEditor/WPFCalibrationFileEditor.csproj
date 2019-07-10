@@ -81,6 +81,7 @@
     </ApplicationDefinition>
     <Compile Include="AppSettings.cs" />
     <Compile Include="Logic\PlsxConverter\PlsxConverterMethods\CheckResolution.cs" />
+    <Compile Include="Logic\ParameterConfigFinder.cs" />
     <Compile Include="ViewModel\Command\RunProcessCommand.cs" />
     <Compile Include="ViewModel\Command\SaveCommand.cs" />
     <Compile Include="ViewModel\Command\SelectFileCommand.cs" />

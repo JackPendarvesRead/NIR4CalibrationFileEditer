@@ -16,24 +16,9 @@ namespace WPFCalibrationFileEditor.Logic.PlsxConverter.PlsxConverterMethods
         {
             this.config = config;
         }
-        public ReplaceEmptyParameters(string configKey)
+        public ReplaceEmptyParameters(string configFilePath)
         {
-            this.config = JacksUsefulLibrary.JsonMethods.JsonReaderWriter<ReplaceEmptyParametersConfig>.LoadFromFile(GetConfigString(configKey));
-        }
-
-        private string GetConfigString(string configKey)
-        {
-            switch (configKey.ToLower())
-            {
-                case "feed":
-                    return AppSettings.FeedParameterConfigurationFilePath;
-
-                case "farm":
-                    return AppSettings.FarmParameterConfigurationFilePath;
-
-                default:
-                    throw new Exception("Could not get config from configKey.");
-            }
+            this.config = JacksUsefulLibrary.JsonMethods.JsonReaderWriter<ReplaceEmptyParametersConfig>.LoadFromFile(configFilePath);
         }
 
         /// <summary>

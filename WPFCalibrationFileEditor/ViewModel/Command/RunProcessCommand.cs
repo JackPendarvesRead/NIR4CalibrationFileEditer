@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
+using WPFCalibrationFileEditor.Logic;
 
 namespace WPFCalibrationFileEditor.ViewModel.Command
 {
@@ -25,8 +26,12 @@ namespace WPFCalibrationFileEditor.ViewModel.Command
 
         public void Execute(object parameter)
         {
-            var config = parameter.ToString();
-            viewModel.RunProcess(config);
+            if(parameter != null)
+            {
+                MyParamterConfig x = parameter as MyParamterConfig;
+                var config = x.FilePath;
+                viewModel.RunProcess(config);
+            }          
         }
     }
 }

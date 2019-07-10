@@ -5,11 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFCalibrationFileEditor"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:vm="clr-namespace:WPFCalibrationFileEditor.ViewModel"        
         mc:Ignorable="d"
-        Title="NIR4 calibration file editer" Height="800" Width="550">
+        Title="NIR4 calibration file editer" Height="800" Width="700">
 
+    <Window.Resources>
+        <vm:MainWindowViewModel x:Key="viewModel" />
+    </Window.Resources>
 
-    <StackPanel>
+    <StackPanel DataContext="{Binding Source={StaticResource viewModel}}">
         <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <Label>Plsx File</Label>
             <Label Width="Auto" Content="{Binding FileInformation.CalibrationFilePath}" />
@@ -17,21 +21,24 @@
         </DockPanel>
         
         <StackPanel Orientation="Horizontal">
-            <ComboBox Name="combo">
-                <ComboBoxItem IsSelected="True">Farm</ComboBoxItem>
-                <ComboBoxItem>Feed</ComboBoxItem>
+            <ComboBox Name="combo"
+                      Width="200"
+                      ItemsSource="{Binding ParameterConfig}"
+                      SelectedItem="{Binding ConfigurationFileToUse}"
+                      >
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Path=Name}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
             </ComboBox>
-            <Button Command="{Binding RunProcessCommand}" CommandParameter="{Binding Text, ElementName=combo}">Ok</Button>
+            <Button Command="{Binding RunProcessCommand}" CommandParameter="{Binding SelectedItem, ElementName=combo}">Ok</Button>
         </StackPanel>
         
         <DataGrid Name="dg" 
                   ItemsSource="{Binding FileInformation.Parameters, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                  ColumnHeaderStyle="{StaticResource columnHeaderStyle}" >
-            <!--<i:Interaction.Triggers>
-                <i:EventTrigger EventName="CellEditEnding">
-                    <i:InvokeCommandAction Command="{Binding DataGridChangeCommand}" CommandParameter="{Binding CurrentCell, ElementName=dg}"/>
-                </i:EventTrigger>
-            </i:Interaction.Triggers>-->
+                  ColumnHeaderStyle="{StaticResource columnHeaderStyle}" 
+                  MinColumnWidth="120">
         </DataGrid>        
         <Button Command="{Binding SaveCommand}">Save</Button>        
     </StackPanel>
